@@ -1,0 +1,26 @@
+## Implementation Considerations
+
+We are providing a generic framework; which tools we plug in at the different levels needs to be discovered and negotiated with the user during an initialization phase.
+
+We must deeply build out the the structure from top to bottom. Accurately and comprehensibly capturing the project telos is of utmost importance. From there, 
+
+Reference the [Claude Collective](https://github.com/vanzan01/claude-code-sub-agent-collective) to understand
+- How to structure Agents
+- How to structure delegation and reporting between agents
+- How to structure tool calling
+
+You can find an example of this in /Users/alancolver/dev/annuity/cloud-resources/.claude-collective
+
+Tool Discovery
+- We should work with the user to discover what tools are available
+- We should also prescribe certain (nearly) indispensable tools such as
+	- Web search
+	- Documentation search (via context7)
+	- Browser use
+	- Others?
+
+Work with various coding platforms. The way purplestack handles this by having a top level AGENTS.md and then symlinking other references (like .cursor, CLAUDE.md, etc). Reference the symlinking structure of /Users/alancolver/dev/auraone to discover how to set this up (i.e. many symlinks pointing to mobile-app/tools/content/CONTEXT.md)
+
+We should consider the structure to record the context (telos, tools, etc) in structured Markdown files in a prescriptive manner. The logos agent may periodically update these as it interacts with the human user.
+
+Our goal is to share this with the world (MIT license). Structure as a simple, well-documented Github repo. Create a top-level README.md and have simple commands to import, initialize (go through a discovery phase with the user for things like telos, available MCPs, existing code/platforms, preferences on styles and coding languages, etc).
