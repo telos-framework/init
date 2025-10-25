@@ -210,7 +210,7 @@ Wait for user response. If they want refinements, engage conversationally:
 
 Once the hierarchy is finalized, create the following files:
 
-### 4.1 Create `telos/content/TELOS.md`
+### 4.1 Create `.telos/TELOS.md`
 
 ```markdown
 # Telos: Ultimate Purpose
@@ -260,7 +260,7 @@ Tools**: [Build systems]
 
 ### 4.2 Create Agent Files
 
-For each level (L9 → L1), create `telos/agents/l[N]-[agent-name].md`:
+For each level (L9 → L1), create `..telos/agents/l[N]-[agent-name].md`:
 
 **Template structure:**
 
@@ -339,14 +339,58 @@ For each level (L9 → L1), create `telos/agents/l[N]-[agent-name].md`:
 - Tools: [Detected linters - ESLint, Prettier, etc.]
 - Examples: Reject PR with linting errors
 
-### 4.3 Create Platform Integration
+### 4.3 Integrate with AI Assistant Configuration Files
 
-If `.claude/` exists, create:
+Check for and update existing AI assistant configuration files to reference
+`.telos/TELOS.md`:
 
-- `AGENTS.md` - Reference to Telos hierarchy
-- Update `CLAUDE.md` (if exists) with Telos instructions
+**Files to check:**
 
-If `.opencode/` exists, do the same in that directory.
+- `AGENTS.md` - Unified standard (if exists, prepend Telos reference)
+- `CLAUDE.md` - Claude Code (if exists, prepend Telos reference)
+- `.cursorrules` - Cursor IDE (if exists, prepend Telos reference)
+- `.clinerules` - Cline/VS Code (if exists, prepend Telos reference)
+- `.windsurfrules` - Windsurf IDE (if exists, prepend Telos reference)
+- `.roo/config` or `.roocode` - Roo Code (if exists, prepend Telos reference)
+- `GEMINI.md` - Google Gemini (if exists, prepend Telos reference)
+
+**For each existing file, prepend this instruction:**
+
+```markdown
+## Telos Purpose Hierarchy
+
+**IMPORTANT**: Before making any significant changes to this project, consult
+the Telos purpose hierarchy defined in `.telos/TELOS.md`. This file contains the
+9-level purpose structure (L9: Ultimate Purpose → L1: Code Quality) that guides
+all development decisions.
+
+**When to reference Telos:**
+
+- Before implementing new features (check L9-L5 strategic alignment)
+- Before refactoring code (ensure L1-L4 technical standards are maintained)
+- When resolving conflicts between requirements (appeal to higher-level purpose)
+- During code review (validate against appropriate agent level)
+
+**Quick reference:**
+
+- L9 (Telos-Guardian): Ultimate purpose - does this serve our mission?
+- L8 (Market-Analyst): Business value - does this deliver measurable outcomes?
+- L7 (Insight-Synthesizer): Product strategy - does this align with our roadmap?
+- L6 (UX-Simulator): Experience - does this meet UX standards?
+- L5 (Journey-Validator): Workflows - do user journeys work end-to-end?
+- L4 (Integration-Contractor): API contracts - are integrations maintained?
+- L3 (Component-Architect): Components - does this follow our patterns?
+- L2 (Function-Author): Functions - is this testable and maintainable?
+- L1 (Syntax-Linter): Code quality - does this pass linting/formatting?
+
+See `.telos/TELOS.md` for complete hierarchy and `..telos/agents/` for detailed
+agent definitions.
+
+---
+```
+
+**If no AI assistant config files exist**, create `AGENTS.md` with Telos
+content.
 
 ### 4.4 Create Orchestrator (Optional)
 
@@ -373,16 +417,20 @@ Once all files are generated, display:
 ✅ **Telos initialization complete!**
 
 **Generated files:**
-- `telos/content/TELOS.md` - Ultimate purpose and hierarchy
-- `telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
-- `AGENTS.md` - Agent reference guide
+- `.telos/TELOS.md` - Ultimate purpose and hierarchy
+- `..telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
+- Updated AI assistant config files (AGENTS.md, CLAUDE.md, .cursorrules, etc.)
 - `logos/orchestrator.js` - Request router (if applicable)
 
 **Next steps:**
-1. Review the generated agent definitions in `telos/agents/`
+1. Review the generated agent definitions in `..telos/agents/`
 2. Run `/telos-validate` to check alignment with current codebase
 3. Run `/telos-status` to see current configuration
 4. Start developing with purpose-driven AI assistance!
+
+**Your AI assistant now knows about Telos!** All existing config files (AGENTS.md,
+CLAUDE.md, .cursorrules, etc.) have been updated to reference `.telos/TELOS.md`
+before making changes.
 
 **Slash commands available:**
 - `/telos-validate` - Check if current code aligns with Telos

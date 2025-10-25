@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2025-10-25
+
+### Changed
+
+- **BREAKING**: Telos files now generated in `.telos/` directory instead of
+  `telos/`
+  - `.telos/TELOS.md` - Main purpose hierarchy file (was
+    `telos/content/TELOS.md`)
+  - `.telos/agents/` - Agent definitions directory (was `telos/agents/`)
+- `/telos-init` now integrates with multiple AI assistant config files:
+  - Detects and updates: AGENTS.md, CLAUDE.md, .cursorrules, .clinerules,
+    .windsurfrules, .roo, GEMINI.md
+  - Prepends Telos reference instructions to existing config files
+  - Creates AGENTS.md if no config files exist
+  - All AI assistants now reference `.telos/TELOS.md` before making changes
+
+### Added
+
+- Comprehensive AI assistant config file integration
+- Telos reference instructions prepended to 7 different AI assistant formats
+- Quick reference guide in config files for L9-L1 hierarchy
+
+### Migration
+
+For existing Telos users:
+
+```bash
+# Move existing telos/ to .telos/
+mv telos .telos
+# Then run /telos-init to update config file integrations
+```
+
 ## [0.3.1] - 2025-10-25
 
 ### Fixed

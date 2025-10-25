@@ -11,8 +11,8 @@ purpose hierarchy.
 
 Check if Telos is initialized:
 
-- `telos/content/TELOS.md` must exist
-- At least some agent files in `telos/agents/` must exist
+- `.telos/TELOS.md` must exist
+- At least some agent files in `.telos/agents/` must exist
 
 If not found, display: "❌ Telos not initialized. Run `/telos-init` first."
 
@@ -20,7 +20,7 @@ If not found, display: "❌ Telos not initialized. Run `/telos-init` first."
 
 ### Step 1: Load Telos Configuration
 
-Read `telos/content/TELOS.md` to extract:
+Read `.telos/TELOS.md` to extract:
 
 - Ultimate purpose (L9)
 - 9-level hierarchy definitions

@@ -13,32 +13,32 @@ specialized agent.
 
 These agents handle high-level purpose, strategy, and user experience:
 
-- **L9: Telos-Guardian** (`telos/agents/l9-telos-guardian.md`) - Ultimate
+- **L9: Telos-Guardian** (`.telos/agents/l9-telos-guardian.md`) - Ultimate
   purpose keeper
-- **L8: Market-Analyst** (`telos/agents/l8-market-analyst.md`) - Business value
+- **L8: Market-Analyst** (`.telos/agents/l8-market-analyst.md`) - Business value
   measurer
-- **L7: Insight-Synthesizer** (`telos/agents/l7-insight-synthesizer.md`) -
+- **L7: Insight-Synthesizer** (`.telos/agents/l7-insight-synthesizer.md`) -
   Product strategist
-- **L6: UX-Simulator** (`telos/agents/l6-ux-simulator.md`) - Experience designer
-- **L5: Journey-Validator** (`telos/agents/l5-journey-validator.md`) - Workflow
+- **L6: UX-Simulator** (`.telos/agents/l6-ux-simulator.md`) - Experience designer
+- **L5: Journey-Validator** (`.telos/agents/l5-journey-validator.md`) - Workflow
   verifier
 
 ### Technical Layers (L4-L1)
 
 These agents handle implementation details and code quality:
 
-- **L4: Integration-Contractor** (`telos/agents/l4-integration-contractor.md`) -
+- **L4: Integration-Contractor** (`.telos/agents/l4-integration-contractor.md`) -
   API contract enforcer
-- **L3: Component-Architect** (`telos/agents/l3-component-architect.md`) -
+- **L3: Component-Architect** (`.telos/agents/l3-component-architect.md`) -
   Component designer
-- **L2: Function-Author** (`telos/agents/l2-function-author.md`) - Function
+- **L2: Function-Author** (`.telos/agents/l2-function-author.md`) - Function
   implementer
-- **L1: Syntax-Linter** (`telos/agents/l1-syntax-linter.md`) - Code quality
+- **L1: Syntax-Linter** (`.telos/agents/l1-syntax-linter.md`) - Code quality
   enforcer
 
 ## Telos-Logos System
 
-**Telos** (purpose) is defined in `telos/content/TELOS.md` - the ultimate goal
+**Telos** (purpose) is defined in `.telos/TELOS.md` - the ultimate goal
 this project serves.
 
 **Logos** (logic) is managed by the orchestrator in `logos/orchestrator.js` -

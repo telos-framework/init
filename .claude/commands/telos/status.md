@@ -10,8 +10,8 @@ Display the current Telos configuration for this project.
 
 First, check if Telos is initialized:
 
-- Look for `telos/content/TELOS.md`
-- Look for `telos/agents/` directory
+- Look for `.telos/TELOS.md`
+- Look for `.telos/agents/` directory
 
 If not found, display:
 
@@ -27,7 +27,7 @@ If Telos is initialized, read and display:
 
 ### 1. Ultimate Purpose
 
-From `telos/content/TELOS.md`, extract and display:
+From `.telos/TELOS.md`, extract and display:
 
 ```
 🎯 **Ultimate Purpose (L9)**
@@ -55,7 +55,7 @@ Display all 9 levels:
 
 ### 3. Technology Stack
 
-From `telos/content/TELOS.md`, show detected stack:
+From `.telos/TELOS.md`, show detected stack:
 
 ```
 **Technology Stack**

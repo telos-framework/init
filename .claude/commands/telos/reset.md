@@ -11,8 +11,8 @@ fresh.
 
 This command will **delete** the following:
 
-- `telos/content/TELOS.md`
-- `telos/agents/` directory (all L1-L9 agent files)
+- `.telos/TELOS.md`
+- `.telos/agents/` directory (all L1-L9 agent files)
 - `logos/orchestrator.js` (if present)
 - Telos sections in `AGENTS.md` and `CLAUDE.md` (if present)
 
@@ -24,8 +24,8 @@ Before proceeding, ask the user:
 ⚠️  **Warning: This will delete all Telos configuration files.**
 
 **Files to be removed:**
-- `telos/content/TELOS.md`
-- `telos/agents/l1-*.md` through `l9-*.md`
+- `.telos/TELOS.md`
+- `.telos/agents/l1-*.md` through `l9-*.md`
 - `logos/orchestrator.js`
 - Telos references in AGENTS.md / CLAUDE.md
 
@@ -44,8 +44,8 @@ If user confirms "yes":
 Delete the following files (if they exist):
 
 ```bash
-rm -rf telos/content/TELOS.md
-rm -rf telos/agents/
+rm -rf .telos/TELOS.md
+rm -rf .telos/agents/
 rm -rf logos/orchestrator.js
 ```
 

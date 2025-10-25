@@ -38,8 +38,8 @@ Do NOT ask for user review - proceed directly to generation.
 
 Create all files exactly as specified in `/telos-init` Step 4:
 
-- `telos/content/TELOS.md`
-- `telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
+- `.telos/TELOS.md`
+- `.telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
 - `AGENTS.md` (if `.claude/` or `.opencode/` exists)
 - `logos/orchestrator.js` (if Node.js project)
 
@@ -65,8 +65,8 @@ Once complete, show:
 | L1 | Syntax-Linter | [Purpose] |
 
 **Files created:**
-- `telos/content/TELOS.md`
-- `telos/agents/` (9 agent definitions)
+- `.telos/TELOS.md`
+- `.telos/agents/` (9 agent definitions)
 - `AGENTS.md`
 - `logos/orchestrator.js` (if applicable)
 
