@@ -6,6 +6,60 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-10-25
+
+### Changed
+
+- **BREAKING: Slash Command-First Architecture**
+  - `telos init` now installs slash commands instead of running interactive
+    prompts
+  - CLI becomes installer-only: copies `/telos-init`, `/telos-quick`,
+    `/telos-validate`, `/telos-status`, `/telos-reset` to
+    `.claude/commands/telos/`
+  - Sets up `AGENTS.md` and `CLAUDE.md` memory files with Telos instructions
+  - Primary workflow: `telos init` → `/telos-init` (AI-driven setup)
+  - Time reduction: 10 minutes → 2 minutes
+  - User effort: 12 questions → 2-3 strategic refinements
+
+### Added
+
+- **AI-Native Slash Commands**
+  - `/telos-init` - Interactive initialization with AI codebase analysis
+  - `/telos-quick` - Fast initialization with auto-accepted AI proposals
+  - `/telos-validate` - Check code alignment with purpose hierarchy
+  - `/telos-status` - Show current Telos configuration
+  - `/telos-reset` - Clear and reinitialize
+- New installer modules:
+  - `lib/installers/slash-commands.js` - Command file installation
+  - `lib/installers/memory-files.js` - AGENTS.md and CLAUDE.md setup
+- Templates for memory files:
+  - `templates/AGENTS.md` - Agent framework documentation
+  - `templates/CLAUDE.md` - Project context for AI assistants
+- Cross-platform support: Claude Code, OpenCode, Cursor
+
+### Removed
+
+- Interactive CLI prompts from `telos init` (moved to `/telos-init` slash
+  command)
+- Dependencies on `inquirer` and `ora` in init command (still used by other
+  commands)
+
+### Migration
+
+**For existing users:**
+
+1. Run `telos init` in your project (installs new slash commands)
+2. If you need to reconfigure, run `/telos-reset` then `/telos-init`
+3. Your existing `telos/` directory structure remains compatible
+
+**New behavior:**
+
+- `telos init` no longer prompts for questions—it installs commands
+- To complete setup, run `/telos-init` in Claude Code
+- AI analyzes your codebase and proposes hierarchy
+- You only review strategic layers (L9-L5), technical layers (L1-L4)
+  auto-generated
+
 ## [0.2.0] - 2025-10-25
 
 ### Added

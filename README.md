@@ -66,22 +66,35 @@ telos init
 
 ## Quick Start
 
-### 1. Initialize Your Project
+### 1. Install Telos Commands
 
 ```bash
 cd your-project
 telos init
 ```
 
-The interactive initialization will:
+This installs Telos slash commands to `.claude/commands/telos/` and sets up
+`AGENTS.md` and `CLAUDE.md` templates.
 
-- Capture your project's ultimate purpose (Telos)
-- Decompose it into a 9-level hierarchy
-- Discover available tools and MCP servers
-- Generate adapted agent definitions
-- Create platform-specific configurations
+### 2. Initialize with AI
 
-### 2. Start Development
+Open your project in Claude Code (or your AI coding assistant) and run:
+
+```
+/telos-init
+```
+
+The AI will:
+
+- Analyze your codebase (README, package files, source structure)
+- Propose a complete 9-level purpose hierarchy
+- Auto-generate technical layers (L1-L4) from detected tools
+- Ask you to review strategic layers (L9-L5)
+- Generate all agent definitions and configuration files
+
+**Time: ~2 minutes** (vs. 10 minutes with CLI prompts)
+
+### 3. Start Development
 
 Your AI assistants now operate as a coherent multi-agent collective:
 
@@ -101,10 +114,10 @@ L1 Syntax-Linter: Ensures code quality
 (Bottom-up validation confirms alignment)
 ```
 
-### 3. Validate Alignment
+### 4. Validate Alignment
 
-```bash
-telos validate
+```
+/telos-validate
 ```
 
 Check that all work traces back to your ultimate Telos.
@@ -155,12 +168,23 @@ Full integration with [OpenSpec](https://openspec.dev) workflow:
 
 ## Commands
 
+### CLI Commands
+
 ```bash
-telos init              # Initialize Telos in your project
-telos status            # Show current configuration
-telos rediscover        # Update tool detection
-telos validate          # Check Telos alignment
+telos init              # Install Telos slash commands and memory files
 telos --help            # Show all commands
+```
+
+### Slash Commands (AI-Native)
+
+Use these in Claude Code, OpenCode, or Cursor:
+
+```
+/telos-init             # Initialize Telos with AI-driven analysis
+/telos-quick            # Fast initialization (auto-accept AI proposals)
+/telos-validate         # Check code alignment with purpose hierarchy
+/telos-status           # Show current Telos configuration
+/telos-reset            # Clear and reinitialize
 ```
 
 ## Project Structure

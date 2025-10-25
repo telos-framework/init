@@ -1,6 +1,6 @@
 {
   "name": "telos-framework",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Telos-driven Multi-Agent Development Framework - A philosophically-grounded AI collective for purpose-aligned software development",
   "main": "index.js",
   "bin": {
@@ -24,7 +24,10 @@
     "claude",
     "cursor",
     "copilot",
-    "orchestrator"
+    "orchestrator",
+    "claude-code-plugin",
+    "slash-commands",
+    "ai-native"
   ],
   "author": "Alan Colver",
   "license": "MIT",
@@ -40,6 +43,8 @@
     "bin/",
     "lib/",
     "logos/",
+    ".claude/",
+    "templates/",
     "LICENSE",
     "README.md",
     "USAGE.md"
