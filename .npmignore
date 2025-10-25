@@ -5,6 +5,7 @@ vitest.config.js
 
 # Development files
 .telos/
+.telos-init-state.json
 telos/
 openspec/
 examples/

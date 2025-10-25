@@ -25,23 +25,36 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 
 ## Build/Test Commands
 
-- This is a documentation/spec project with no build process
-- Validate OpenSpec changes: `openspec validate --strict`
-- List active changes: `openspec list`
-- List specs: `openspec list --specs`
-- Show item details: `openspec show [item]`
+- Run tests: `npm test`
+- Tests must pass before any version bump or publish
+- This is an npm package that gets published to the registry
 
-## Code Style (Markdown)
+## Publishing Workflow
 
-- Use standard markdown without emojis unless requested
-- Headers: ATX style (`#`, `##`, not underlines)
-- Code blocks: Use triple backticks with language identifier
-- Lists: Use `-` for bullets, maintain consistent indentation
-- Line length: No hard limit, let content flow naturally
+**IMPORTANT: Always ask user before publishing or version bumps**
+
+1. Make and test code changes
+2. Run `npm test` to verify all tests pass
+3. **Ask user** if they want to bump version and publish
+4. If approved:
+   - Update version in `package.json`
+   - Update `CHANGELOG.md` with changes
+   - Run `npm test` again
+   - Run `npm publish`
+5. **Never auto-commit, auto-bump versions, or auto-publish without explicit
+   user approval**
+
+## Code Style (JavaScript/Node.js)
+
+- CommonJS modules (`require`/`module.exports`)
+- Use chalk for colored output
+- Use ora for spinners (but not during interactive prompts)
+- Use inquirer v9.x with `const { default: inquirer } = require('inquirer')`
+- No unnecessary comments unless requested
 
 ## Workflow
 
-1. Before changes: Check `openspec/project.md` and `openspec list` for context
-2. For new features: Create proposal under `openspec/changes/[change-id]/`
-3. Validate all spec changes with `openspec validate [change] --strict`
-4. Archive completed changes to `changes/archive/YYYY-MM-DD-[name]/`
+1. Before changes: Check existing code patterns and conventions
+2. Make focused changes to fix specific issues
+3. Run `npm test` to verify
+4. Ask user before version bumps or publishing

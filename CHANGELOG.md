@@ -6,6 +6,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-10-25
+
+### Added
+
+- **Progressive State Persistence**: Init process now saves progress after each
+  phase, allowing seamless recovery from errors without re-prompting users
+  - State saved to `.telos-init-state.json` (auto-cleaned on success)
+  - Tracks 7 phases: Telos Discovery, Hierarchy Building, and Phases 1-5
+  - Preserves all user input (telos, beneficiaries, impact, constraints, L9-L1
+    hierarchy)
+  - Automatically resumes from last successful phase on retry
+  - Visual indicators show when using cached data vs running fresh
+- New `lib/commands/init-state.js` module with state management functions
+- Comprehensive test coverage: 68 tests including state persistence, resume
+  behavior, and error recovery scenarios
+
+### Fixed
+
+- UI box alignment in initialization header (added missing characters)
+
+## [0.1.4] - 2025-10-25
+
+### Fixed
+
+- Fixed spinner blocking interactive prompts during non-quick mode
+  initialization. Spinner now only shows during quick mode; interactive mode
+  shows clean prompts without spinner interference.
+
+## [0.1.3] - 2025-10-25
+
+### Fixed
+
+- Fixed `inquirer.prompt is not a function` error by correctly importing
+  inquirer v9.x default export in `telos-discovery.js` and
+  `hierarchy-builder.js`
+
 ## [0.1.0] - 2025-10-25
 
 ### Added

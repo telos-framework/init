@@ -7,6 +7,7 @@ yarn-error.log*
 
 .telos/
 .telos-backups/
+.telos-init-state.json
 
 dist/
 build/
