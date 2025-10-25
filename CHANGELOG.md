@@ -6,6 +6,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-10-25
+
+### Added
+
+- **Multi-platform initialization support**: Interactive platform selection
+  during `telos init`
+  - Checkbox-based selection (arrow keys + space to select)
+  - Support for Claude Code, Opencode, Cursor, Cline, Windsurf, Roo, Gemini
+  - "Other" option creates AGENTS.md only
+- **Opencode command support**: Commands installed to `.opencode/command/telos/`
+  - Added YAML frontmatter with descriptions for all commands
+  - Commands use `/telos/` prefix (e.g., `/telos/init`, `/telos/validate`)
+- **Platform-specific config file generation**:
+  - Claude Code → `CLAUDE.md`
+  - Cursor → `.cursorrules`
+  - Cline → `.clinerules`
+  - Windsurf → `.windsurfrules`
+  - Roo → `.roocode`
+  - Gemini → `GEMINI.md`
+  - Other → `AGENTS.md`
+- **Updated `/telos:init` slash command**:
+  - Step 0: Platform selection instructions
+  - Step 4.4: Opencode command installation with frontmatter examples
+  - Updated completion message with platform-specific command syntax
+
+### Changed
+
+- `telos init` now prompts for platform selection instead of auto-detecting
+- Config files are prepended with Telos content (not appended) for better
+  visibility
+- Multiple platforms can be selected simultaneously
+
+### Tests
+
+- Added comprehensive test suite (`test/platform-selection.test.js`) with 18
+  tests
+- Total test coverage: 86 tests across 9 test files, all passing ✅
+- Tests cover: command installation, config generation, frontmatter,
+  multi-platform selection
+
 ## [0.3.3] - 2025-10-25
 
 ### Fixed
