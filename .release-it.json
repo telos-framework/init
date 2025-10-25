@@ -8,15 +8,15 @@
   "github": {
     "release": true,
     "releaseName": "v${version}",
-    "releaseNotes": "See [CHANGELOG.md](https://github.com/telos-framework/init/blob/main/CHANGELOG.md) for details."
+    "releaseNotes": "See CHANGELOG.md for details"
   },
   "npm": {
     "publish": true
   },
   "hooks": {
     "before:init": ["npm test"],
-    "after:bump": "echo Updated to v${version}",
-    "after:release": "echo Successfully released ${name} v${version}"
+    "after:bump": "echo 'Updated to v${version}'",
+    "after:release": "echo 'Successfully released ${name} v${version}'"
   },
   "plugins": {}
 }
