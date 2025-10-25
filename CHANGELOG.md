@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2025-10-25
+
+### Fixed
+
+- Improved `/telos-init` hierarchy display formatting for terminal readability
+  - Changed from markdown table to block format with visual separators
+  - Each level now displayed in its own block with clear purpose and reasoning
+    sections
+  - Better line wrapping and visual hierarchy
+
 ## [0.3.0] - 2025-10-25
 
 ### Changed

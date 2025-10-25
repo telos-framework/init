@@ -59,20 +59,94 @@ Run: `git status` to check if this is an active repository
 
 ## Step 2: Propose Telos Hierarchy
 
-Based on your analysis, propose a complete 9-level hierarchy. Present it in a
-clear table:
+Based on your analysis, propose a complete 9-level hierarchy. Present it using
+this block format:
 
-| Level  | Agent Name             | Purpose Statement                    | Reasoning                             |
-| ------ | ---------------------- | ------------------------------------ | ------------------------------------- |
-| **L9** | Telos-Guardian         | [Proposed ultimate purpose]          | [Why this is the ultimate purpose]    |
-| **L8** | Market-Analyst         | [Proposed business value]            | [Business outcomes this serves]       |
-| **L7** | Insight-Synthesizer    | [Proposed product strategy]          | [How it delivers user value]          |
-| **L6** | UX-Simulator           | [Proposed experience philosophy]     | [User experience principles]          |
-| **L5** | Journey-Validator      | [Proposed workflow validation]       | [User journey requirements]           |
-| **L4** | Integration-Contractor | [Proposed API/integration contracts] | [Based on detected APIs/integrations] |
-| **L3** | Component-Architect    | [Proposed component design]          | [Based on detected framework]         |
-| **L2** | Function-Author        | [Proposed function implementation]   | [Based on detected test framework]    |
-| **L1** | Syntax-Linter          | [Proposed code quality standard]     | [Based on detected linters]           |
+```
+═══════════════════════════════════════════════════════════════════════════
+                          PROPOSED TELOS HIERARCHY
+═══════════════════════════════════════════════════════════════════════════
+
+───────────────────────────────────────────────────────────────────────────
+L9 - Telos-Guardian (Ultimate Purpose)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed ultimate purpose statement]
+
+Reasoning: [Why this is the ultimate purpose - based on README, project 
+description, and inferred mission]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L8 - Market-Analyst (Business Value)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed business value statement]
+
+Reasoning: [Business outcomes this project serves - based on metrics, KPIs,
+or market positioning mentioned in docs]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L7 - Insight-Synthesizer (Product Strategy)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed product strategy statement]
+
+Reasoning: [How it delivers user value - based on features, roadmap, or
+user-facing goals]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L6 - UX-Simulator (Experience Philosophy)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed UX philosophy statement]
+
+Reasoning: [User experience principles - based on UI framework, design
+system, or accessibility mentions]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L5 - Journey-Validator (Workflow Validation)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed workflow validation statement]
+
+Reasoning: [User journey requirements - based on E2E tests, integration
+tests, or workflow documentation]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L4 - Integration-Contractor (API Contracts)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed API contract statement]
+
+Reasoning: [Based on detected API frameworks, protocols, and integration
+patterns]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L3 - Component-Architect (Component Design)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed component architecture statement]
+
+Reasoning: [Based on detected UI framework, component patterns, and
+architectural choices]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L2 - Function-Author (Function Implementation)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed function implementation statement]
+
+Reasoning: [Based on detected test framework, testing strategy, and code
+coverage requirements]
+───────────────────────────────────────────────────────────────────────────
+
+───────────────────────────────────────────────────────────────────────────
+L1 - Syntax-Linter (Code Quality)
+───────────────────────────────────────────────────────────────────────────
+Purpose: [Proposed code quality statement]
+
+Reasoning: [Based on detected linters, formatters, and quality standards]
+═══════════════════════════════════════════════════════════════════════════
+```
 
 ### Auto-generation Guidelines for L1-L4:
 
