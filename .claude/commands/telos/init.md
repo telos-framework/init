@@ -148,7 +148,7 @@ Reasoning: [Based on detected linters, formatters, and quality standards]
 ═══════════════════════════════════════════════════════════════════════════
 ```
 
-### Auto-generation Guidelines for L1-L4:
+### Auto-generation Guidelines for L1-L4
 
 **L1 (Syntax-Linter)** - Based on detected tools:
 
@@ -185,6 +185,7 @@ After presenting the table, say:
 **Strategic layers (L9-L5) define your project's purpose and require your input.**
 
 **Technical layers (L1-L4) are auto-generated based on your detected tooling:**
+
 - L1: [List detected linters]
 - L2: [List detected test frameworks]
 - L3: [List detected component frameworks]
@@ -193,11 +194,13 @@ After presenting the table, say:
 **Please review the strategic layers (L9-L5). Would you like to refine any of these?**
 
 Options:
+
 - "Accept all" - Proceed with generation
 - "Refine L9" - Edit ultimate purpose layer
 - "Refine L8" - Edit business value layer
 - "Refine all" - Walk through each strategic layer
 - "Restart" - Re-analyze with different focus
+
 ---
 
 Wait for user response. If they want refinements, engage conversationally:
@@ -254,13 +257,13 @@ Tools**: [Build systems]
 ## Initialization Metadata
 
 - **Initialized**: [Current date]
-- **AI Assistant**: Claude via Telos `/telos-init`
+- **AI Assistant**: Claude via Telos `/telos:init`
 - **Project Type**: [Inferred project type]
 ```
 
 ### 4.2 Create Agent Files
 
-For each level (L9 → L1), create `..telos/agents/l[N]-[agent-name].md`:
+For each level (L9 → L1), create `.telos/agents/l[N]-[agent-name].md`:
 
 **Template structure:**
 
@@ -383,7 +386,7 @@ all development decisions.
 - L2 (Function-Author): Functions - is this testable and maintainable?
 - L1 (Syntax-Linter): Code quality - does this pass linting/formatting?
 
-See `.telos/TELOS.md` for complete hierarchy and `..telos/agents/` for detailed
+See `.telos/TELOS.md` for complete hierarchy and `.telos/agents/` for detailed
 agent definitions.
 
 ---
@@ -417,15 +420,17 @@ Once all files are generated, display:
 ✅ **Telos initialization complete!**
 
 **Generated files:**
+
 - `.telos/TELOS.md` - Ultimate purpose and hierarchy
-- `..telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
+- `.telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
 - Updated AI assistant config files (AGENTS.md, CLAUDE.md, .cursorrules, etc.)
 - `logos/orchestrator.js` - Request router (if applicable)
 
 **Next steps:**
-1. Review the generated agent definitions in `..telos/agents/`
-2. Run `/telos-validate` to check alignment with current codebase
-3. Run `/telos-status` to see current configuration
+
+1. Review the generated agent definitions in `.telos/agents/`
+2. Run `/telos:validate` to check alignment with current codebase
+3. Run `/telos:status` to see current configuration
 4. Start developing with purpose-driven AI assistance!
 
 **Your AI assistant now knows about Telos!** All existing config files (AGENTS.md,
@@ -433,9 +438,11 @@ CLAUDE.md, .cursorrules, etc.) have been updated to reference `.telos/TELOS.md`
 before making changes.
 
 **Slash commands available:**
-- `/telos-validate` - Check if current code aligns with Telos
-- `/telos-status` - Show current Telos configuration
-- `/telos-reset` - Clear and reinitialize
+
+- `/telos:validate` - Check if current code aligns with Telos
+- `/telos:status` - Show current Telos configuration
+- `/telos:reset` - Clear and reinitialize
+
 ---
 
 ## Tips
