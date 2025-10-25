@@ -1,6 +1,6 @@
 {
   "name": "telos-framework",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Telos-driven Multi-Agent Development Framework - A philosophically-grounded AI collective for purpose-aligned software development",
   "main": "index.js",
   "bin": {
