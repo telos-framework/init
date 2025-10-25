@@ -1,0 +1,38 @@
+# Test files
+test/
+*.test.js
+vitest.config.js
+
+# Development files
+.telos/
+telos/
+openspec/
+examples/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/
+
+# Documentation source (keep built docs)
+docs/
+
+# Temporary files
+*.log
+*.tmp
+.env
+.env.local
+
+# Node
+node_modules/
+npm-debug.log*

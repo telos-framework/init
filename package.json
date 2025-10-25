@@ -1,0 +1,59 @@
+{
+  "name": "telos-framework",
+  "version": "0.1.0",
+  "description": "Telos-driven Multi-Agent Development Framework - A philosophically-grounded AI collective for purpose-aligned software development",
+  "main": "index.js",
+  "bin": {
+    "telos": "./bin/telos-cli.js"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "development",
+    "telos",
+    "philosophy",
+    "multi-agent",
+    "spec-driven",
+    "openspec",
+    "claude",
+    "cursor",
+    "copilot",
+    "orchestrator"
+  ],
+  "author": "Alan Colver",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/telos-framework/init.git"
+  },
+  "homepage": "https://github.com/telos-framework/init#readme",
+  "bugs": {
+    "url": "https://github.com/telos-framework/init/issues"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "logos/",
+    "LICENSE",
+    "README.md",
+    "USAGE.md"
+  ],
+  "dependencies": {
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "handlebars": "^4.7.8",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

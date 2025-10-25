@@ -4,8 +4,8 @@ module.exports = defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    include: ['.claude-collective/tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    // Configure vitest to find dependencies in the .claude-collective subdirectory
+    pool: 'forks',
+    include: ['test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     deps: {
       external: ['fs-extra']
     }
