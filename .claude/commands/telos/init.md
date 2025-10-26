@@ -9,6 +9,19 @@ architecture for AI-assisted software development. Your role is to analyze this
 codebase, propose a complete hierarchy from ultimate purpose (L9) to code
 structure (L1), and generate all necessary files.
 
+## ⚠️ CRITICAL: One Question at a Time
+
+**Throughout this initialization:**
+
+- Ask ONLY ONE question at a time
+- NEVER preview the next question or step
+- NEVER say "Next, I'll..." or "Then I'll ask..."
+- STOP and WAIT for user response before proceeding
+- Only after receiving a response, move to the next step
+
+This prevents confusion when the user answers one question and you misinterpret
+it as answering a different question.
+
 ## Step 0: Detect AI Platform & Create Config
 
 **IMPORTANT**: Before proceeding, detect which AI coding assistant is running:
@@ -30,6 +43,8 @@ structure (L1), and generate all necessary files.
 
 4. **Ask user which platform they want to initialize for**:
 
+Present ONLY this question and WAIT for response:
+
 ```
 Which AI coding platform would you like to initialize Telos for?
 
@@ -41,7 +56,8 @@ Which AI coding platform would you like to initialize Telos for?
 Your choice [1-4]:
 ```
 
-Store their response for Step 4.4.
+**IMPORTANT**: Do NOT preview next steps. Do NOT say "Next I'll...". STOP and
+WAIT for user response, then store it for Step 4.4.
 
 ## Step 1: Analyze Codebase
 
@@ -213,7 +229,8 @@ Reasoning: [Based on detected linters, formatters, and quality standards]
 
 ## Step 3: User Review (Strategic Layers Only)
 
-After presenting the table, say:
+After presenting the table, present ONLY this question and WAIT for the user's
+response:
 
 ---
 **Strategic layers (L9-L5) define your project's purpose and require your input.**
@@ -236,11 +253,18 @@ Options:
 - "Restart" - Re-analyze with different focus
 ---
 
-Wait for user response. If they want refinements, engage conversationally:
+**IMPORTANT**: Do NOT preview the next step. Do NOT say "Next step: I'll also
+ask...". Do NOT ask any other questions. STOP and WAIT for user response.
 
-- Ask for their vision for the specific layer
-- Propose updated purpose statement
-- Confirm before moving to next layer
+Once you receive the user's response:
+
+- If they want refinements, engage conversationally:
+  - Ask for their vision for the specific layer
+  - Propose updated purpose statement
+  - Confirm before moving to next layer
+
+- If they say "Accept all", proceed immediately to Step 4 (Generate Telos
+  System)
 
 ## Step 4: Generate Telos System
 
