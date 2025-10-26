@@ -458,7 +458,7 @@ All use standard markdown format (already created by `telos init` CLI).
 
 #### Option 2: Opencode Commands
 
-Create commands in `.opencode/command/telos/` using frontmatter format:
+Create commands in `.opencode/command/` using frontmatter format:
 
 **Template structure for Opencode:**
 
@@ -472,7 +472,7 @@ description: [Command description]
 
 **Files to create:**
 
-1. `.opencode/command/telos/init.md`:
+1. `.opencode/command/telos-init.md`:
 
 ```markdown
 ---
@@ -482,7 +482,7 @@ description: Initialize Telos multi-agent system for this project
 [Copy full content from .claude/commands/telos/init.md]
 ```
 
-2. `.opencode/command/telos/quick.md`:
+2. `.opencode/command/telos-quick.md`:
 
 ```markdown
 ---
@@ -492,7 +492,7 @@ description: Quick Telos initialization with auto-accepted AI proposals
 [Copy full content from .claude/commands/telos/quick.md]
 ```
 
-3. `.opencode/command/telos/validate.md`:
+3. `.opencode/command/telos-validate.md`:
 
 ```markdown
 ---
@@ -502,7 +502,7 @@ description: Validate current code against Telos purpose hierarchy
 [Copy full content from .claude/commands/telos/validate.md]
 ```
 
-4. `.opencode/command/telos/status.md`:
+4. `.opencode/command/telos-status.md`:
 
 ```markdown
 ---
@@ -512,7 +512,7 @@ description: Show current Telos configuration and hierarchy
 [Copy full content from .claude/commands/telos/status.md]
 ```
 
-5. `.opencode/command/telos/reset.md`:
+5. `.opencode/command/telos-reset.md`:
 
 ```markdown
 ---
@@ -522,8 +522,9 @@ description: Clear existing Telos installation and reinitialize
 [Copy full content from .claude/commands/telos/reset.md]
 ```
 
-**Note**: Opencode commands use the same prompt content as Claude Code commands,
-just with added YAML frontmatter for the `description` field.
+**Note**: Opencode commands are installed directly in `.opencode/command/` with
+`telos-` prefix. This creates commands like `/telos-init` instead of
+`/telos/init`.
 
 #### Option 3: Both Platforms
 
@@ -588,10 +589,10 @@ before making changes.
 - `/telos:reset` - Clear and reinitialize
 
 **Opencode:**
-- `/telos/init` - Initialize Telos (this command)
-- `/telos/validate` - Check if current code aligns with Telos
-- `/telos/status` - Show current Telos configuration
-- `/telos/reset` - Clear and reinitialize
+- `/telos-init` - Initialize Telos (this command)
+- `/telos-validate` - Check if current code aligns with Telos
+- `/telos-status` - Show current Telos configuration
+- `/telos-reset` - Clear and reinitialize
 ---
 
 ✅ **Telos initialization complete!**

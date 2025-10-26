@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2025-10-25
+
+### Fixed
+
+- **Opencode command naming**: Changed from `/telos/init` to `/telos-init`
+  format
+  - Commands now installed directly in `.opencode/command/` instead of
+    subdirectory
+  - Files named `telos-init.md`, `telos-quick.md`, etc.
+  - Removes awkward double-slash syntax (`/telos/init` → `/telos-init`)
+- Updated CLI output to show correct command syntax for each platform
+- Updated `/telos:init` documentation with correct Opencode paths
+
 ## [0.4.0] - 2025-10-25
 
 ### Added

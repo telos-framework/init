@@ -43,11 +43,13 @@ describe('Platform Selection', () => {
       expect(results[0].platform).toBe('opencode');
       expect(results[0].results).toHaveLength(5);
       
-      const opencodeDir = path.join(testDir, '.opencode', 'command', 'telos');
+      const opencodeDir = path.join(testDir, '.opencode', 'command');
       const files = await fs.readdir(opencodeDir);
-      expect(files).toContain('init.md');
+      expect(files).toContain('telos-init.md');
+      expect(files).toContain('telos-quick.md');
+      expect(files).toContain('telos-validate.md');
       
-      const initContent = await fs.readFile(path.join(opencodeDir, 'init.md'), 'utf-8');
+      const initContent = await fs.readFile(path.join(opencodeDir, 'telos-init.md'), 'utf-8');
       expect(initContent).toMatch(/^---\ndescription: Initialize Telos multi-agent system/);
       expect(initContent).toContain('---');
     });
@@ -60,17 +62,23 @@ describe('Platform Selection', () => {
       expect(results.map(r => r.platform)).toContain('opencode');
       
       const claudeDir = path.join(testDir, '.claude', 'commands', 'telos');
-      const opencodeDir = path.join(testDir, '.opencode', 'command', 'telos');
+      const opencodeDir = path.join(testDir, '.opencode', 'command');
       
       expect(await fs.access(claudeDir).then(() => true).catch(() => false)).toBe(true);
       expect(await fs.access(opencodeDir).then(() => true).catch(() => false)).toBe(true);
+      
+      const claudeFiles = await fs.readdir(claudeDir);
+      expect(claudeFiles).toContain('init.md');
+      
+      const opencodeFiles = await fs.readdir(opencodeDir);
+      expect(opencodeFiles).toContain('telos-init.md');
     });
 
     it('should add frontmatter to all Opencode command files', async () => {
       await installSlashCommands(testDir, ['opencode']);
       
-      const opencodeDir = path.join(testDir, '.opencode', 'command', 'telos');
-      const files = ['init.md', 'quick.md', 'validate.md', 'status.md', 'reset.md'];
+      const opencodeDir = path.join(testDir, '.opencode', 'command');
+      const files = ['telos-init.md', 'telos-quick.md', 'telos-validate.md', 'telos-status.md', 'telos-reset.md'];
       
       for (const file of files) {
         const content = await fs.readFile(path.join(opencodeDir, file), 'utf-8');
@@ -247,18 +255,18 @@ describe('Platform Selection', () => {
     it('should have correct frontmatter descriptions for Opencode', async () => {
       await installSlashCommands(testDir, ['opencode']);
       
-      const opencodeDir = path.join(testDir, '.opencode', 'command', 'telos');
+      const opencodeDir = path.join(testDir, '.opencode', 'command');
       
-      const quickContent = await fs.readFile(path.join(opencodeDir, 'quick.md'), 'utf-8');
+      const quickContent = await fs.readFile(path.join(opencodeDir, 'telos-quick.md'), 'utf-8');
       expect(quickContent).toMatch(/description: Quick Telos initialization with auto-accepted AI proposals/);
       
-      const validateContent = await fs.readFile(path.join(opencodeDir, 'validate.md'), 'utf-8');
+      const validateContent = await fs.readFile(path.join(opencodeDir, 'telos-validate.md'), 'utf-8');
       expect(validateContent).toMatch(/description: Validate current code against Telos purpose hierarchy/);
       
-      const statusContent = await fs.readFile(path.join(opencodeDir, 'status.md'), 'utf-8');
+      const statusContent = await fs.readFile(path.join(opencodeDir, 'telos-status.md'), 'utf-8');
       expect(statusContent).toMatch(/description: Show current Telos configuration and hierarchy/);
       
-      const resetContent = await fs.readFile(path.join(opencodeDir, 'reset.md'), 'utf-8');
+      const resetContent = await fs.readFile(path.join(opencodeDir, 'telos-reset.md'), 'utf-8');
       expect(resetContent).toMatch(/description: Clear existing Telos installation and reinitialize/);
     });
   });
