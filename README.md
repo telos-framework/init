@@ -17,14 +17,20 @@ something exists.
 **Logos** (Greek: λόγος) means "reason," "discourse," or "rational
 principle"—the organizing intelligence that maintains coherent order.
 
+Once you install the Telos framework, your AI coding assistant becomes the Logos
+orchestrator itself. Every conversation with your AI follows bidirectional
+validation: strategic purpose flows downward (L9→L1) to guide implementation,
+while technical constraints flow upward (L1→L9) to inform strategy. Your AI
+assistant mediates this dialogue, ensuring decisions converge only when both
+flows align.
+
 Most development tools focus on _how_ to code. Telos ensures you're building the
 _right_ thing by maintaining alignment between implementation and purpose across
 nine levels of abstraction—from syntax to transcendent meaning.
 
 Based on Kenneth Boulding's hierarchy of system complexity, Telos orchestrates
 specialized AI agents that operate coherently from low-level linting to
-strategic vision. The **Logos orchestrator** uses rational discourse to maintain
-top-down purpose alignment and bottom-up validation.
+strategic vision.
 
 ## Architecture
 
@@ -51,80 +57,26 @@ The central orchestration engine implementing:
 - **Middle-out reconciliation**: Conflicts resolved through rational dialogue
 - **Spec-driven workflow**: All changes flow through OpenSpec proposals
 
-## Installation
+## Quick Start
 
 ```bash
 npx telos-framework init
 ```
 
-Or install globally:
+This command:
 
-```bash
-npm install -g telos-framework
-telos init
-```
-
-## Quick Start
-
-### 1. Install Telos Commands
-
-```bash
-cd your-project
-telos init
-```
-
-This installs Telos slash commands to `.claude/commands/telos/` and sets up
-`AGENTS.md` and `CLAUDE.md` templates.
+- Detects your AI coding platform (Claude Code, Opencode, Cursor, etc.)
+- Installs platform-specific slash commands
+- Sets up configuration files (CLAUDE.md, AGENTS.md, etc.)
+- Prepares your project for Logos-driven development
 
 > **Note**: Safe to run multiple times! If Telos is already installed, you'll be
 > prompted to choose: Abort (keep existing), Reinstall (overwrite), or Add
 > platforms. See [Re-initialization Safety](docs/REINIT.md) for details.
 
-### 2. Initialize with AI
-
-Open your project in Claude Code (or your AI coding assistant) and run:
-
-```
-/telos-init
-```
-
-The AI will:
-
-- Analyze your codebase (README, package files, source structure)
-- Propose a complete 9-level purpose hierarchy
-- Auto-generate technical layers (L1-L4) from detected tools
-- Ask you to review strategic layers (L9-L5)
-- Generate all agent definitions and configuration files
-
-**Time: ~2 minutes** (vs. 10 minutes with CLI prompts)
-
-### 3. Start Development
-
-Your AI assistants now operate as a coherent multi-agent collective:
-
-```
-User: "Add user authentication"
-  ↓
-L9 Telos-Guardian: Validates alignment with project purpose
-  ↓
-L8 Market-Analyst: Defines success metrics
-  ↓
-... (decomposition cascade)
-  ↓
-L2 Function-Author: Implements with TDD
-  ↓
-L1 Syntax-Linter: Ensures code quality
-  ↓
-(Bottom-up validation confirms alignment)
-```
-
-### 4. Validate Alignment
-
-```
-/telos-validate
-```
-
-Check that all work traces back to your ultimate Telos.
+After installation, open your project in your AI coding assistant and run
+`/telos-init` to analyze your codebase and generate the 9-level purpose
+hierarchy.
 
 ## Features
 
