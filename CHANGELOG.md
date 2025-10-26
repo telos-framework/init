@@ -6,6 +6,61 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2025-10-25
+
+### Added
+
+- **Single source of truth for Telos instructions**:
+  - New `templates/TELOS_CORE.md` contains all core validation requirements
+  - `templates/AGENTS.md` injects TELOS_CORE content via `{{TELOS_CORE}}`
+    placeholder
+  - `templates/CLAUDE.md` now just references AGENTS.md (no duplication)
+  - Other platform configs (Cursor, Cline, etc.) use simplified CLAUDE.md
+    template
+  - Template injection system in `lib/installers/memory-files.js`
+  - 5 new tests for template injection (100 total tests)
+
+- **Enforcement mechanisms for Telos validation**:
+  - ⚠️ Visual warnings at top of CLAUDE.md and AGENTS.md templates
+  - Hard requirement declarations for framework upgrades, dependency changes,
+    new features
+  - Pre-commit validation checklist that requires stopping if validation fails
+  - Explicit "STOP and ask the user" instructions when validation can't be
+    completed
+  - Todo system integration: Required high-priority validation todos for
+    significant changes
+  - Expanded "When to Reference Telos" list including:
+    - Framework upgrades (Next.js, React, etc.)
+    - Dependency changes (major version bumps)
+    - API contract changes
+    - Architecture changes
+    - Breaking changes
+- **Concrete validation workflow**:
+  - BEFORE/DURING/AFTER work sections with specific steps
+  - Example todo structure for Telos validation
+  - Required documentation in commit messages
+  - Layer-specific validation guidance (which levels to check for different
+    change types)
+
+### Changed
+
+- **CLAUDE.md template**: Moved Telos validation to top with "⚠️ REQUIRED
+  READING" header
+- **AGENTS.md template**: Added enforcement language and explicit stopping
+  conditions
+- Templates now emphasize convergence requirement: "If flows don't converge,
+  STOP"
+- Validation is now framed as HARD REQUIREMENT not optional best practice
+
+### Fixed
+
+- **Major issue**: AI assistants were bypassing Telos validation due to:
+  - Vague trigger conditions ("significant changes" undefined)
+  - No enforcement mechanism (just advisory "IMPORTANT" notes)
+  - Missing integration with todo system
+  - Framework upgrades not explicitly listed as requiring validation
+  - No hard stops when validation couldn't be completed
+
 ## [0.6.0] - 2025-10-25
 
 ### Added

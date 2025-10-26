@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/telos-framework.svg)](https://www.npmjs.com/package/telos-framework)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/telos-framework)](https://nodejs.org)
-[![Tests](https://img.shields.io/badge/tests-95%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-100%20passing-brightgreen)]()
 
 A philosophically-grounded AI collective that embeds Aristotelian purpose
 hierarchy into software development. Every line of code serves your ultimate
