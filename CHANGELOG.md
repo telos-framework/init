@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2025-10-25
+
+### Added
+
+- **Re-initialization detection and safety checks**:
+  - Detects existing Telos installations before proceeding
+  - Shows which platforms are already installed
+  - Offers three options: Abort (keep existing), Reinstall (overwrite), Add
+    platforms (add new)
+  - Prevents accidental loss of customized configuration files
+  - New `detectExistingInstallation()` function checks for:
+    - Existing `.claude/commands/telos/` directory
+    - Existing `.opencode/command/telos-*.md` files
+    - Config files (CLAUDE.md, AGENTS.md, .cursorrules, etc.) with Telos content
+- **9 new tests** for re-initialization detection covering all platforms
+- Total test coverage: **95 tests** across 10 test files
+
+### Changed
+
+- `npx telos-framework init` now safe to run multiple times without data loss
+- Platform selection prompt adapts based on detected existing installation
+
 ## [0.5.0] - 2025-10-25
 
 ### Added

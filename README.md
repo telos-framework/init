@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/telos-framework.svg)](https://www.npmjs.com/package/telos-framework)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/telos-framework)](https://nodejs.org)
-[![Tests](https://img.shields.io/badge/tests-29%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-95%20passing-brightgreen)]()
 
 A philosophically-grounded AI collective that embeds Aristotelian purpose
 hierarchy into software development. Every line of code serves your ultimate
@@ -75,6 +75,10 @@ telos init
 
 This installs Telos slash commands to `.claude/commands/telos/` and sets up
 `AGENTS.md` and `CLAUDE.md` templates.
+
+> **Note**: Safe to run multiple times! If Telos is already installed, you'll be
+> prompted to choose: Abort (keep existing), Reinstall (overwrite), or Add
+> platforms. See [Re-initialization Safety](docs/REINIT.md) for details.
 
 ### 2. Initialize with AI
 
