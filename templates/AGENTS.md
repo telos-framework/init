@@ -19,7 +19,8 @@ These agents handle high-level purpose, strategy, and user experience:
   measurer
 - **L7: Insight-Synthesizer** (`.telos/agents/l7-insight-synthesizer.md`) -
   Product strategist
-- **L6: UX-Simulator** (`.telos/agents/l6-ux-simulator.md`) - Experience designer
+- **L6: UX-Simulator** (`.telos/agents/l6-ux-simulator.md`) - Experience
+  designer
 - **L5: Journey-Validator** (`.telos/agents/l5-journey-validator.md`) - Workflow
   verifier
 
@@ -27,8 +28,8 @@ These agents handle high-level purpose, strategy, and user experience:
 
 These agents handle implementation details and code quality:
 
-- **L4: Integration-Contractor** (`.telos/agents/l4-integration-contractor.md`) -
-  API contract enforcer
+- **L4: Integration-Contractor**
+  (`.telos/agents/l4-integration-contractor.md`) - API contract enforcer
 - **L3: Component-Architect** (`.telos/agents/l3-component-architect.md`) -
   Component designer
 - **L2: Function-Author** (`.telos/agents/l2-function-author.md`) - Function
@@ -38,12 +39,38 @@ These agents handle implementation details and code quality:
 
 ## Telos-Logos System
 
-**Telos** (purpose) is defined in `.telos/TELOS.md` - the ultimate goal
+**Telos** (τέλος, purpose) is defined in `.telos/TELOS.md` - the ultimate goal
 this project serves.
 
-**Logos** (logic) is managed by the orchestrator in `logos/orchestrator.js` -
-routes development requests to the appropriate agent based on the nature of the
-work.
+**Logos** (λόγος, reasoning) is the bidirectional validation flow that ensures:
+
+- **Downward flow (L9→L1)**: Every implementation decision traces back to
+  ultimate purpose
+- **Upward flow (L1→L9)**: Technical reality informs and validates strategic
+  decisions
+
+### How Logos Works
+
+**Before any change**, validate through both flows:
+
+1. **Top-down validation**: "Does this serve our ultimate purpose (L9)?"
+   - Start at L9 (Telos-Guardian): Does this align with our mission?
+   - Flow down through L8, L7, L6... to L1
+   - Each layer asks: "Does this decision support the layer above?"
+
+2. **Bottom-up validation**: "Is this technically feasible (L1)?"
+   - Start at L1 (Syntax-Linter): Does this meet code quality standards?
+   - Flow up through L2, L3, L4... to L9
+   - Each layer asks: "Can I support what the layer below needs?"
+
+3. **Convergence**: Change is validated when both flows agree
+   - If top-down says "yes" but bottom-up says "infeasible" → revise strategy
+   - If bottom-up says "possible" but top-down says "doesn't serve purpose" →
+     reject change
+   - If both agree → proceed with confidence
+
+The orchestrator in `logos/orchestrator.js` routes requests to the appropriate
+agent(s) and manages this validation flow.
 
 ## Using Telos in Development
 

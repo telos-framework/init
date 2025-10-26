@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-10-25
+
+### Added
+
+- **Comprehensive bidirectional validation flow** in generated `TELOS.md`:
+  - Downward flow (L9→L1): Purpose drives implementation
+  - Upward flow (L1→L9): Technical reality informs strategy
+  - Convergence rule: Proceed only when both flows agree
+  - Real-world example of OAuth feature validation through both flows
+  - Quick reference guide for validation in development
+  - Decision-making framework for when stuck on strategy vs implementation
+- Enhanced **AGENTS.md** template with validation flow explanation
+- Updated **CLAUDE.md** template with bidirectional validation workflow
+
+### Changed
+
+- `TELOS.md` now serves as the living validation document (the Logos itself)
+- Templates emphasize validation gates and convergence requirements
+- Documentation clarifies how to use TELOS.md for decision validation
+
 ## [0.4.1] - 2025-10-25
 
 ### Fixed
