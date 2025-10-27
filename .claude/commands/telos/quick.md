@@ -45,6 +45,26 @@ Create all files exactly as specified in `/telos-init` Step 4:
 - `AGENTS.md` (if `.claude/` or `.opencode/` exists)
 - `logos/orchestrator.js` (if Node.js project)
 
+### Copy Sub-Agent Specialists
+
+After generating the L1-L9 agent files, **EXECUTE these bash commands** to copy the specialized sub-agents:
+
+```bash
+# Find telos-framework package location using Node module resolution
+TELOS_PATH=$(node -p "require.resolve('telos-framework/package.json').replace('/package.json', '')")
+
+# Create sub-agents directory
+mkdir -p .telos/agents/sub-agents
+
+# Copy all sub-agent files (15 specialized agents)
+cp "$TELOS_PATH/templates/agents/sub-agents/"*.md .telos/agents/sub-agents/
+
+# Copy sub-agent mapping guide
+cp "$TELOS_PATH/templates/agents/SUB_AGENT_MAPPING.md" .telos/agents/
+```
+
+**Verification:** Confirm that `.telos/agents/sub-agents/` contains 15 markdown files.
+
 ## Step 4: Display Summary
 
 Once complete, show:

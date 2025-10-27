@@ -512,18 +512,25 @@ For each level (L9 → L1), create `.telos/agents/l[N]-[agent-name].md`:
 
 ### 4.2.1 Copy Sub-Agent Specialists
 
-After creating the L1-L9 agent files, copy the specialized sub-agent files from the Telos framework templates:
+After creating the L1-L9 agent files, you MUST copy the specialized sub-agent files from the Telos framework templates.
 
-**Action:** Copy all files from `templates/agents/sub-agents/` to `.telos/agents/sub-agents/`:
+**CRITICAL: Execute these bash commands immediately:**
 
 ```bash
+# Find telos-framework package location using Node module resolution
+TELOS_PATH=$(node -p "require.resolve('telos-framework/package.json').replace('/package.json', '')")
+
 # Create sub-agents directory
 mkdir -p .telos/agents/sub-agents
 
-# Copy all sub-agent files
-cp -r [path-to-telos-framework]/templates/agents/sub-agents/*.md .telos/agents/sub-agents/
-cp [path-to-telos-framework]/templates/agents/SUB_AGENT_MAPPING.md .telos/agents/
+# Copy all sub-agent files (15 specialized agents)
+cp "$TELOS_PATH/templates/agents/sub-agents/"*.md .telos/agents/sub-agents/
+
+# Copy sub-agent mapping guide
+cp "$TELOS_PATH/templates/agents/SUB_AGENT_MAPPING.md" .telos/agents/
 ```
+
+**Verification:** After running these commands, confirm that `.telos/agents/sub-agents/` contains 15 markdown files and `.telos/agents/SUB_AGENT_MAPPING.md` exists.
 
 **Sub-agents included:**
 - api-design.md - REST/GraphQL API design
