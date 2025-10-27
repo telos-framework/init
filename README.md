@@ -111,16 +111,36 @@ Full integration with [OpenSpec](https://openspec.dev) workflow:
 - Validation uses OpenSpec archive
 - Telos lineage tracked throughout
 
-### Technical Agent Delegation
+### Specialized Sub-Agent Delegation
 
-9-level agents can delegate to specialized technical agents from
-[Claude Collective](https://github.com/alan-colver/claude-code-collective):
+Each L1-L9 agent can delegate to 15 specialized sub-agents for deep technical expertise:
 
-- `research-agent` for technical investigation
-- `quality-agent` for comprehensive reviews
-- `testing-implementation-agent` for test suites
-- `devops-agent` for deployment
-- And more specialized agents
+**Strategic & Planning:**
+- `prd` - Product requirements and user stories
+- `research` - Technical research and library comparison
+
+**Implementation:**
+- `api-design` - REST/GraphQL API design
+- `component-implementation` - UI component creation
+- `feature-implementation` - Feature development
+- `database-design` - Database schema design
+
+**Quality & Testing:**
+- `code-reviewer` - Code quality review
+- `quality` - Comprehensive QA (accessibility, security, performance)
+- `security-audit` - Security vulnerability assessment
+- `testing` - Test creation and strategy
+
+**Operations & Documentation:**
+- `devops` - Deployment and CI/CD
+- `infrastructure` - Cloud infrastructure
+- `documentation` - Technical documentation
+
+**Optimization:**
+- `refactoring` - Code restructuring
+- `polish` - Performance optimization
+
+All sub-agents integrated from [agents repository](https://github.com/accolver/agents/tree/main/agent)
 
 ## Commands
 
@@ -156,6 +176,9 @@ your-project/
 │   │   ├── LOGOS.md         # Orchestrator instructions
 │   │   └── TOOLS.md         # Tool registry and mappings
 │   ├── agents/              # Individual agent definitions (L1-L9)
+│   │   ├── l9-telos-guardian.md through l1-syntax-linter.md
+│   │   ├── sub-agents/      # 15 specialized sub-agents
+│   │   └── SUB_AGENT_MAPPING.md  # Sub-agent to level mapping
 │   └── templates/           # Platform-specific configs
 ├── .telos/                  # Runtime state (gitignored)
 ├── TELOS.md                 # Symlink for visibility

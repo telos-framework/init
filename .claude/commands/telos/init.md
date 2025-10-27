@@ -543,6 +543,43 @@ For each level (L9 → L1), create `.telos/agents/l[N]-[agent-name].md`:
 - Tools: [Detected linters - ESLint, Prettier, etc.]
 - Examples: Reject PR with linting errors
 
+### 4.2.1 Copy Sub-Agent Specialists
+
+After creating the L1-L9 agent files, copy the specialized sub-agent files from the Telos framework templates:
+
+**Action:** Copy all files from `templates/agents/sub-agents/` to `.telos/agents/sub-agents/`:
+
+```bash
+# Create sub-agents directory
+mkdir -p .telos/agents/sub-agents
+
+# Copy all sub-agent files
+cp -r [path-to-telos-framework]/templates/agents/sub-agents/*.md .telos/agents/sub-agents/
+cp [path-to-telos-framework]/templates/agents/SUB_AGENT_MAPPING.md .telos/agents/
+```
+
+**Sub-agents included:**
+- api-design.md - REST/GraphQL API design
+- code-reviewer.md - Code quality review
+- component-implementation.md - UI component creation
+- database-design.md - Database schema design
+- devops.md - Deployment and CI/CD
+- documentation.md - Technical documentation
+- feature-implementation.md - Feature development
+- infrastructure.md - Cloud infrastructure
+- polish.md - Code optimization
+- prd.md - Product requirements
+- quality.md - Quality assurance
+- refactoring.md - Code refactoring
+- research.md - Technical research
+- security-audit.md - Security review
+- testing.md - Test creation
+
+**Mapping file:**
+- SUB_AGENT_MAPPING.md - Maps sub-agents to L1-L9 levels
+
+These sub-agents can be invoked by the L1-L9 agents using the Task tool for specialized work.
+
 ### 4.3 Integrate with AI Assistant Configuration Files
 
 Check for and update existing AI assistant configuration files to reference
