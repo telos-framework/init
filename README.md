@@ -17,6 +17,11 @@ something exists.
 **Logos** (Greek: λόγος) means "reason," "discourse," or "rational
 principle"—the organizing intelligence that maintains coherent order.
 
+**Tikto** (Greek: τίκτω) means "to give birth" or "to bear"—the act of bringing
+forth, creating, or producing something new. It represents the transformative
+process of manifesting purpose into reality, whether literally (physical
+creation) or metaphorically (generating ideas, building systems, bearing fruit).
+
 Once you install the Telos framework, your AI coding assistant becomes the Logos
 orchestrator itself. Every conversation with your AI follows bidirectional
 validation: strategic purpose flows downward (L9→L1) to guide implementation,
