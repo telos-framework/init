@@ -42,12 +42,13 @@ Create all files exactly as specified in `/telos-init` Step 4:
 - `.telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
 - `.telos/agents/sub-agents/` (15 specialized sub-agent files)
 - `.telos/agents/SUB_AGENT_MAPPING.md` (sub-agent mapping guide)
-- `AGENTS.md` (if `.claude/` or `.opencode/` exists)
+- `AGENTS.md` - AI assistant configuration with complete TELOS_CORE content
+- `CLAUDE.md` - Claude Code integration (if applicable)
 - `logos/orchestrator.js` (if Node.js project)
 
-### Copy Sub-Agent Specialists
+### Step 3.1: Copy Sub-Agent Specialists
 
-After generating the L1-L9 agent files, **EXECUTE these bash commands** to copy the specialized sub-agents:
+**EXECUTE these bash commands** to copy the specialized sub-agents:
 
 ```bash
 # Find telos-framework package location using Node module resolution
@@ -64,6 +65,32 @@ cp "$TELOS_PATH/templates/agents/SUB_AGENT_MAPPING.md" .telos/agents/
 ```
 
 **Verification:** Confirm that `.telos/agents/sub-agents/` contains 15 markdown files.
+
+### Step 3.2: Integrate with AI Assistant Configuration
+
+**IMPORTANT**: Use the actual template files from the telos-framework package.
+
+**Execute these steps:**
+
+1. **Locate templates:**
+   ```bash
+   TELOS_PATH=$(node -p "require.resolve('telos-framework/package.json').replace('/package.json', '')")
+   ```
+
+2. **Read template files:**
+   - Read `$TELOS_PATH/templates/TELOS_CORE.md`
+   - Read `$TELOS_PATH/templates/AGENTS.md`
+   - Read `$TELOS_PATH/templates/CLAUDE.md`
+
+3. **Process AGENTS.md template:**
+   - Replace `{{TELOS_CORE}}` in AGENTS.md template with full TELOS_CORE.md content
+   - Create or append to `AGENTS.md` in project root
+
+4. **Create CLAUDE.md** (if running from Claude Code):
+   - If `.claude/` directory exists and `CLAUDE.md` doesn't exist, create it
+   - Use the CLAUDE.md template content
+
+**Do NOT use simplified inline templates - use the actual template files to ensure complete validation instructions are included.**
 
 ## Step 4: Display Summary
 
@@ -87,14 +114,22 @@ Once complete, show:
 | L1 | Syntax-Linter | [Purpose] |
 
 **Files created:**
-- `.telos/TELOS.md`
-- `.telos/agents/` (9 L1-L9 agent definitions)
-- `.telos/agents/sub-agents/` (15 specialized sub-agents)
-- `.telos/agents/SUB_AGENT_MAPPING.md`
-- `AGENTS.md`
-- `logos/orchestrator.js` (if applicable)
+- `.telos/TELOS.md` - Ultimate purpose and hierarchy
+- `.telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md` - Nine level agent definitions
+- `.telos/agents/sub-agents/` - 15 specialized sub-agents
+- `.telos/agents/SUB_AGENT_MAPPING.md` - Sub-agent delegation guide
 
-**Not satisfied?** Run `/telos-reset` then `/telos-init` for interactive mode.
+**AI assistant configuration updated:**
+- `AGENTS.md` - Comprehensive Telos validation requirements (TELOS_CORE content)
+- `CLAUDE.md` - Claude Code integration (if applicable)
+
+**Platform commands** (already installed by CLI):
+- Claude Code: `.claude/commands/telos/*.md` (5 commands)
+- Opencode: `.opencode/command/telos-*.md` (5 commands)
+
+**Your AI assistant now has the full Telos framework!** The `AGENTS.md` file contains complete validation requirements, agent responsibilities, and the bidirectional validation process.
+
+**Not satisfied?** Run `/telos:reset` then `/telos:init` for interactive mode with full customization.
 ---
 
 ## When to Use Quick Mode
