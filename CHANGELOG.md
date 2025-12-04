@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.3] - 2025-12-04
+
+### Fixed
+
+- **OpenCode platform initialization**: Selecting OpenCode during `telos init`
+  now correctly creates `AGENTS.md`
+  - Previously, OpenCode was in the platform list but had no handler to create
+    its config file
+  - OpenCode reads `AGENTS.md` as its configuration (similar to how Claude reads
+    `CLAUDE.md`)
+  - Added test coverage for OpenCode AGENTS.md creation
+
 ## [0.7.2] - 2025-10-25
 
 ### Fixed
