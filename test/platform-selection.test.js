@@ -174,6 +174,20 @@ describe('Platform Selection', () => {
       expect(content).toContain('Telos Framework');
     });
 
+    it('should create AGENTS.md when Opencode platform selected', async () => {
+      const results = await setupMemoryFiles(testDir, ['opencode']);
+      
+      expect(results.agents).toBeDefined();
+      expect(results.agents.created).toBe(true);
+      
+      const agentsMdPath = path.join(testDir, 'AGENTS.md');
+      const exists = await fs.access(agentsMdPath).then(() => true).catch(() => false);
+      expect(exists).toBe(true);
+      
+      const content = await fs.readFile(agentsMdPath, 'utf-8');
+      expect(content).toContain('Telos Framework');
+    });
+
     it('should create multiple config files for multiple platforms', async () => {
       const results = await setupMemoryFiles(testDir, ['claude', 'cursor', 'gemini']);
       
