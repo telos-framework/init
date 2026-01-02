@@ -1,13 +1,9 @@
----
-description: Initialize Telos spec-driven development for this project
----
-
 # Telos Initialization
 
 You are initializing the **Telos Framework** - a 4-level spec-driven development
 system for AI-assisted software development. Your role is to analyze this
 codebase, set up the spec hierarchy, and guide the user through defining their
-project purpose.
+project specs.
 
 ## The 4-Level Hierarchy
 
@@ -18,7 +14,7 @@ project purpose.
 | L2    | Contract   | API contracts, component interfaces, boundaries |
 | L1    | Function   | Individual functions with TDD scenarios         |
 
-## ⚠️ CRITICAL: One Question at a Time
+## CRITICAL: One Question at a Time
 
 **Throughout this initialization:**
 
@@ -28,10 +24,11 @@ project purpose.
 
 ## Important Note
 
-Platform setup (slash commands, config files) was already completed by running
+Platform setup (config files) was already completed by running
 `npx telos-framework init`. The `telos/` directory structure also exists. Your
-job is to help the user define their L4 purpose and understand how to use the
-system.
+job is to help the user define their specs at all 4 levels.
+
+---
 
 ## Step 1: Analyze Codebase
 
@@ -66,6 +63,8 @@ Scan the primary source directory (src/, lib/, app/) to identify:
 ### 1.4 Existing Specs
 
 Check if `telos/specs/L4-purpose/purpose.md` exists and read it.
+
+---
 
 ## Step 2: Propose Purpose (L4)
 
@@ -104,6 +103,8 @@ Options:
 - "Start over" - Re-analyze with different focus
 
 **STOP and WAIT for user response.**
+
+---
 
 ## Step 3: Update L4 Purpose Spec
 
@@ -148,8 +149,10 @@ title: [Project Name]
 ## Initialization
 
 - **Date**: [Current date]
-- **Method**: /telos:init
+- **Method**: telos init
 ```
+
+---
 
 ## Step 4: Define L3 Experiences (User Journeys)
 
@@ -247,6 +250,8 @@ These journeys will guide your L2 contracts and L1 functions.
 ═══════════════════════════════════════════════════════════════════════════
 ```
 
+---
+
 ## Step 5: Define L2 Contracts (APIs & Components)
 
 Now analyze the codebase for existing contracts OR ask the user about them.
@@ -266,7 +271,7 @@ If you found existing APIs/components, propose L2 specs:
 
 ```
 ═══════════════════════════════════════════════════════════════════════════
-                     DETECTED L2 CONTRACTS
+                    DETECTED L2 CONTRACTS
 ═══════════════════════════════════════════════════════════════════════════
 
 Based on your codebase, I found these contracts:
@@ -309,7 +314,7 @@ For each contract, create a spec file in `telos/specs/L2-contract/`:
 
 **Filename**: `api-[name].md` or `component-[name].md`
 
-```markdown
+````markdown
 <!-- telos-metadata
 id: L2:contract:[filename-without-extension]
 level: 2
@@ -329,9 +334,22 @@ parent: L3:experience:[related-journey]
 
 **Endpoint:** `[METHOD] /api/[path]`
 
-**Request:** \`\`\`json { "field": "type" } \`\`\`
+**Request:**
 
-**Response:** \`\`\`json { "field": "type" } \`\`\`
+```json
+{
+  "field": "type"
+}
+```
+````
+
+**Response:**
+
+```json
+{
+  "field": "type"
+}
+```
 
 **Errors:**
 
@@ -341,8 +359,15 @@ parent: L3:experience:[related-journey]
 
 ### [For Components]
 
-**Props:** \`\`\`typescript interface [ComponentName]Props { prop1: type; prop2:
-type; onEvent?: (data: type) => void; } \`\`\`
+**Props:**
+
+```typescript
+interface [ComponentName]Props {
+  prop1: type;
+  prop2: type;
+  onEvent?: (data: type) => void;
+}
+```
 
 ## Behavior
 
@@ -353,28 +378,28 @@ type; onEvent?: (data: type) => void; } \`\`\`
 
 - L3: [Parent experience]
 - L1: [Functions needed - to be defined]
-```
 
+```
 ### 5.5 Confirm Contracts
 
 After creating the L2 specs, summarize:
-
 ```
-═══════════════════════════════════════════════════════════════════════════
-                       L2 CONTRACTS CREATED
+
+═══════════════════════════════════════════════════════════════════════════ L2
+CONTRACTS CREATED
 ═══════════════════════════════════════════════════════════════════════════
 
 Created [N] contract specs:
 
-1. telos/specs/L2-contract/[contract-1].md
-   "[Contract 1 title]"
+1. telos/specs/L2-contract/[contract-1].md "[Contract 1 title]"
 
-2. telos/specs/L2-contract/[contract-2].md
-   "[Contract 2 title]"
+2. telos/specs/L2-contract/[contract-2].md "[Contract 2 title]"
 
 [etc...]
 ═══════════════════════════════════════════════════════════════════════════
+
 ```
+---
 
 ## Step 6: Define L1 Functions
 
@@ -389,19 +414,21 @@ Scan for functions/methods in:
 - Focus on business logic, not utility functions
 
 ### 6.2 If Functions Exist → Propose L1 Specs
-
 ```
+
 ═══════════════════════════════════════════════════════════════════════════
-                     DETECTED L1 FUNCTIONS
+DETECTED L1 FUNCTIONS
 ═══════════════════════════════════════════════════════════════════════════
 
 Found key functions that need specs:
 
 From src/auth/:
+
 - validateToken() → L1:function:src/auth:validateToken
 - hashPassword() → L1:function:src/auth:hashPassword
 
 From src/users/:
+
 - createUser() → L1:function:src/users:createUser
 - getUserById() → L1:function:src/users:getUserById
 
@@ -409,8 +436,8 @@ From src/users/:
 
 Should I create L1 specs for these? (yes/no/select specific ones)
 ═══════════════════════════════════════════════════════════════════════════
-```
 
+````
 **STOP and WAIT for user response.**
 
 ### 6.3 If No Functions OR Greenfield → Ask User
@@ -453,8 +480,12 @@ parent: L2:contract:[related-contract]
 
 ## Signature
 
-\`\`\`typescript function [functionName]( param1: Type, param2: Type ):
-ReturnType \`\`\`
+```typescript
+function [functionName](
+  param1: Type,
+  param2: Type
+): ReturnType
+````
 
 ## Parameters
 
@@ -473,42 +504,55 @@ ReturnType \`\`\`
 
 ### Scenario: [Happy path name]
 
-\`\`\`gherkin Given [precondition] When [action] Then [expected result] \`\`\`
+```gherkin
+Given [precondition]
+When [action]
+Then [expected result]
+```
 
 ### Scenario: [Error case name]
 
-\`\`\`gherkin Given [precondition] When [action] Then [expected error] \`\`\`
+```gherkin
+Given [precondition]
+When [action]
+Then [expected error]
+```
 
 ### Scenario: [Edge case name]
 
-\`\`\`gherkin Given [edge condition] When [action] Then [expected behavior]
-\`\`\`
+```gherkin
+Given [edge condition]
+When [action]
+Then [expected behavior]
+```
 
 ## Related Specs
 
 - L2: [Parent contract]
-```
 
+```
 ### 6.5 Confirm Functions
 
 After creating the L1 specs, summarize:
-
 ```
-═══════════════════════════════════════════════════════════════════════════
-                       L1 FUNCTIONS CREATED
+
+═══════════════════════════════════════════════════════════════════════════ L1
+FUNCTIONS CREATED
 ═══════════════════════════════════════════════════════════════════════════
 
 Created [N] function specs:
 
-1. telos/specs/L1-function/[function-1].md
-   "[function1Name]" - [brief description]
+1. telos/specs/L1-function/[function-1].md "[function1Name]" - [brief
+   description]
 
-2. telos/specs/L1-function/[function-2].md
-   "[function2Name]" - [brief description]
+2. telos/specs/L1-function/[function-2].md "[function2Name]" - [brief
+   description]
 
 [etc...]
 ═══════════════════════════════════════════════════════════════════════════
+
 ```
+---
 
 ## Step 7: Update TELOS.md
 
@@ -517,6 +561,8 @@ Update `telos/TELOS.md` with all the specs created:
 - **User Experiences** section listing all L3 journeys
 - **Spec Levels** table with correct counts for all levels
 - Verify all parent-child relationships are correct
+
+---
 
 ## Step 8: Final Summary
 
@@ -545,9 +591,9 @@ After saving all specs, provide the final summary:
 
 **Next steps:**
 
-1. Generate tests: `/telos:sdd-generate-tests` for any L1 spec
+1. Generate tests from L1 specs
 2. Implement code with `@telos` annotations
-3. Validate before commits: `/telos:validate`
+3. Validate before commits
 4. For new features: Follow the workflow in `telos/TELOS.md`
 
 ---
@@ -560,3 +606,4 @@ After saving all specs, provide the final summary:
 - Be conversational - this is a dialogue, not a survey
 - Users can say "skip" at any level to define specs later
 - Remind users that specs come before code
+```

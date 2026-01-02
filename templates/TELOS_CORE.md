@@ -6,6 +6,15 @@ This project uses the **Telos Framework** with **Spec-Driven Development
 **CRITICAL**: All code must trace back to specifications. Every function needs a
 `@telos` annotation linking it to a spec.
 
+## ⚠️ IMPORTANT: Read telos/TELOS.md First
+
+Before making any changes, **always read `telos/TELOS.md`** for:
+
+- Project purpose and success metrics
+- User experiences (L3 journeys)
+- Feature request workflow (MUST follow for new features)
+- Current spec counts and health
+
 ## Spec-Driven Development (SDD)
 
 This project enforces a 4-level spec hierarchy:

@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] - 2026-01-02
+
+### Added
+
+- Centralized command definitions in `templates/commands/`
+- Platform adapter system for cross-platform command support
+- All 10 commands now available: init, quick, validate, status, reset, sdd-init,
+  sdd-discover, sdd-context, sdd-validate, sdd-generate-tests
+- `/telos:init` now walks through all 4 levels (L4→L3→L2→L1) with intelligent
+  code detection
+
+### Changed
+
+- Commands are now sourced from `templates/commands/` and transformed per
+  platform
+- Platforms with native commands (Claude, OpenCode) get individual command files
+- Platforms without native commands (Cursor, Cline, Windsurf, Roo, Gemini) get
+  commands embedded in config files
+- TELOS_CORE.md now points users to read telos/TELOS.md first
+
+### Technical
+
+- New `lib/installers/platform-adapters.js` handles platform-specific
+  transformations
+- `lib/installers/slash-commands.js` refactored to use centralized templates
+
 ## [0.10.0] - 2026-01-02
 
 ### Added

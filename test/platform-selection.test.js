@@ -22,15 +22,22 @@ describe('Platform Selection', () => {
       
       expect(results).toHaveLength(1);
       expect(results[0].platform).toBe('claude');
-      expect(results[0].results).toHaveLength(5);
+      expect(results[0].results).toHaveLength(10);
       
       const claudeDir = path.join(testDir, '.claude', 'commands', 'telos');
       const files = await fs.readdir(claudeDir);
+      // Core commands
       expect(files).toContain('init.md');
       expect(files).toContain('quick.md');
       expect(files).toContain('validate.md');
       expect(files).toContain('status.md');
       expect(files).toContain('reset.md');
+      // SDD commands
+      expect(files).toContain('sdd-init.md');
+      expect(files).toContain('sdd-discover.md');
+      expect(files).toContain('sdd-context.md');
+      expect(files).toContain('sdd-validate.md');
+      expect(files).toContain('sdd-generate-tests.md');
       
       const initContent = await fs.readFile(path.join(claudeDir, 'init.md'), 'utf-8');
       expect(initContent).toContain('Telos Initialization');
@@ -41,13 +48,14 @@ describe('Platform Selection', () => {
       
       expect(results).toHaveLength(1);
       expect(results[0].platform).toBe('opencode');
-      expect(results[0].results).toHaveLength(5);
+      expect(results[0].results).toHaveLength(10);
       
       const opencodeDir = path.join(testDir, '.opencode', 'command');
       const files = await fs.readdir(opencodeDir);
       expect(files).toContain('telos-init.md');
       expect(files).toContain('telos-quick.md');
       expect(files).toContain('telos-validate.md');
+      expect(files).toContain('telos-sdd-discover.md');
       
       const initContent = await fs.readFile(path.join(opencodeDir, 'telos-init.md'), 'utf-8');
       expect(initContent).toMatch(/^---\ndescription: Initialize Telos spec-driven development/);
