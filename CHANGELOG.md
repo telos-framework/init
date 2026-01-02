@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.1] - 2026-01-01
+
+### Changed
+
+- Complete migration from 9-level Boulding hierarchy to 4-level SDD system
+- Updated all slash commands for 4-level system
+- Updated hierarchy-builder, tool-mapper, mcp-discovery for 4 levels
+- Marked legacy agent generators as deprecated
+- Fixed README to use correct package name (telos-framework)
+
 ## [0.9.0] - 2026-01-01
 
 ### Added
