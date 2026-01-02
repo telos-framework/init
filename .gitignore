@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Test directories created during manual testing
+test-project/
+
 .telos/
 .telos-backups/
 .telos-init-state.json
