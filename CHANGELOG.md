@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-01-02
+
+### Added
+
+- `/telos:init` now asks about L3 user experiences (journeys) and creates specs
+- TELOS.md now includes **Feature Request Workflow** section that guides AI to:
+  1. Check/update L3 experiences first
+  2. Create/update L2 contracts before coding
+  3. Define L1 functions with TDD scenarios
+  4. Generate tests and implement with annotations
+  5. Validate before commit
+- TELOS.md now lists all L3 experiences with links to spec files
+- generateTelosEntry() accepts `experiences` array for dynamic content
+
+### Changed
+
+- Reorganized TELOS.md template for clearer workflow guidance
+- Simplified init completion message to point users to TELOS.md
+
 ## [0.9.2] - 2026-01-01
 
 ### Fixed

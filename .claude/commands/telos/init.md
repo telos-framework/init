@@ -151,9 +151,113 @@ title: [Project Name]
 - **Method**: /telos:init
 ```
 
-## Step 4: Explain the Workflow
+## Step 4: Define L3 Experiences (User Journeys)
 
-After saving the purpose spec, explain the SDD workflow:
+Now ask about key user experiences. These are the main things users DO with the
+application.
+
+Ask:
+
+**What are the key user journeys in your application?**
+
+Examples of user journeys:
+
+- "User signs up and creates their first project"
+- "User searches for products and completes checkout"
+- "Admin reviews and approves pending submissions"
+
+List 2-5 key journeys (or say "skip" if you want to define these later):
+
+**STOP and WAIT for user response.**
+
+### 4.1 Create L3 Experience Specs
+
+For each journey the user provides, create a spec file in
+`telos/specs/L3-experience/`:
+
+**Filename**: Convert journey to kebab-case (e.g., `user-signup-flow.md`)
+
+```markdown
+<!-- telos-metadata
+id: L3:experience:[filename-without-extension]
+level: 3
+title: [Journey Title]
+parent: L4:purpose
+-->
+
+# L3: [Journey Title]
+
+## Overview
+
+[Brief description of this user journey]
+
+## User Story
+
+As a [user type], I want to [action] so that [benefit].
+
+## Journey Steps
+
+1. **[Step 1 name]**
+   - User action: [What the user does]
+   - System response: [What happens]
+   - Success criteria: [How we know it worked]
+
+2. **[Step 2 name]**
+   - User action: [What the user does]
+   - System response: [What happens]
+   - Success criteria: [How we know it worked]
+
+[Continue for each step...]
+
+## Edge Cases
+
+- [Edge case 1]: [How it's handled]
+- [Edge case 2]: [How it's handled]
+
+## Analytics Events
+
+- `[event_name]`: [When it fires, what it tracks]
+
+## Related Specs
+
+- L2: [Related contracts - to be defined]
+- L1: [Related functions - to be defined]
+```
+
+### 4.2 Confirm Experiences
+
+After creating the L3 specs, summarize:
+
+```
+═══════════════════════════════════════════════════════════════════════════
+                      L3 EXPERIENCES CREATED
+═══════════════════════════════════════════════════════════════════════════
+
+Created [N] user journey specs:
+
+1. telos/specs/L3-experience/[journey-1].md
+   "[Journey 1 title]"
+
+2. telos/specs/L3-experience/[journey-2].md
+   "[Journey 2 title]"
+
+[etc...]
+
+These journeys will guide your L2 contracts and L1 functions.
+═══════════════════════════════════════════════════════════════════════════
+```
+
+## Step 5: Update TELOS.md
+
+Update `telos/TELOS.md` to include the experiences. See the template in
+`lib/sdd/spec-templates.js` for the full format. Key sections to update:
+
+- **Experiences** section listing all L3 journeys
+- **Spec Levels** table with correct counts
+
+## Step 6: Explain the Workflow
+
+After saving specs, explain the SDD workflow:
 
 ---
 
@@ -162,25 +266,10 @@ After saving the purpose spec, explain the SDD workflow:
 **Your project now has:**
 
 - `telos/specs/L4-purpose/purpose.md` - Your project purpose
-- `telos/specs/L3-experience/` - For user journey specs
+- `telos/specs/L3-experience/*.md` - Your user journey specs
 - `telos/specs/L2-contract/` - For API/component contracts
 - `telos/specs/L1-function/` - For function specs with TDD scenarios
-
-**How Spec-Driven Development works:**
-
-1. **Before coding**: Create a spec at the appropriate level
-2. **Write tests**: Generate tests from spec scenarios
-3. **Implement**: Write code with `@telos` annotation linking to spec
-4. **Validate**: Run `/telos:validate` before commits
-
-**Code annotation example:**
-
-```typescript
-// @telos L1:function:src/auth/validation:validateToken
-export function validateToken(token: string): TokenValidation {
-  // implementation
-}
-```
+- `telos/TELOS.md` - Entry point with workflow guidance
 
 **Available commands:**
 
@@ -192,8 +281,8 @@ export function validateToken(token: string): TokenValidation {
 
 **Next steps:**
 
-1. For existing code: Run `/telos:sdd-discover` to generate specs
-2. For new features: Create specs in `telos/specs/` before coding
+1. For existing code: Run `/telos:sdd-discover` to generate L2/L1 specs
+2. For new features: Follow the workflow in `telos/TELOS.md`
 3. Always add `@telos` annotations to link code to specs
 
 ---
@@ -201,6 +290,6 @@ export function validateToken(token: string): TokenValidation {
 ## Tips
 
 - If README is missing or vague, ask user for clarification
-- For empty/greenfield projects, focus on defining clear purpose
+- For empty/greenfield projects, focus on defining clear purpose and journeys
 - Be conversational - this is a dialogue, not a survey
 - Remind users that specs come before code
