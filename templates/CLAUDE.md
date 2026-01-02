@@ -1,29 +1,65 @@
 # Project Context for Claude
 
-<!-- Telos Framework Instructions: See AGENTS.md for complete validation requirements -->
+<!-- Telos Framework with Spec-Driven Development -->
 
-This project uses the **Telos Framework**. See `AGENTS.md` for complete
-instructions on validation requirements.
+This project uses the **Telos Framework** with **Spec-Driven Development
+(SDD)**.
 
-## Claude-Specific Commands
+**CRITICAL**: Read `AGENTS.md` for complete instructions. Every function must
+link to a spec via `@telos` annotation.
 
-Use these slash commands in Claude Code:
+## Quick Reference
 
-- `/telos-init` - Initialize Telos with AI-driven codebase analysis
-- `/telos-quick` - Fast initialization (auto-accept AI proposals)
-- `/telos-validate` - Check code alignment with purpose hierarchy
-- `/telos-status` - Show current Telos configuration
-- `/telos-reset` - Clear and reinitialize
+### Before Writing Code
 
-## Integration with OpenSpec
+1. Check if spec exists for your changes
+2. If not, create spec first
+3. Generate tests from spec
+4. Implement with `@telos` annotation
+5. Validate before commit
 
-If this project uses OpenSpec for change management, ensure that:
+### Key Commands
 
-- Major changes have proposals referencing Telos levels
-- Breaking changes are validated against L9 (ultimate purpose)
-- Technical specs reference L1-L4 agents for implementation guidance
+```bash
+npx telos context <spec-id>           # Load context before changes
+npx telos spec generate-tests <id>    # Generate test skeletons
+npx telos validate                    # Validate before commit
+npx telos discover                    # Generate specs from existing code
+```
+
+### Annotation Format
+
+```typescript
+// @telos L1:function:src/module:functionName
+export function functionName() {}
+
+// @telos-test L1:function:src/module:functionName
+describe("functionName", () => {
+  // @telos-scenario L1:function:src/module:functionName:success
+  it("should succeed", () => {});
+});
+```
+
+## Slash Commands
+
+Use these in Claude Code:
+
+| Command           | Purpose                                 |
+| ----------------- | --------------------------------------- |
+| `/telos-init`     | Initialize Telos + SDD with AI analysis |
+| `/telos-quick`    | Fast initialization (auto-accept)       |
+| `/telos-validate` | Check alignment with purpose hierarchy  |
+| `/telos-status`   | Show current configuration              |
+
+## Spec Hierarchy
+
+```
+L4:purpose      → Why we exist + success metrics
+L3:experience   → User journeys + UX
+L2:contract     → APIs + components
+L1:function     → Functions + TDD
+```
 
 ---
 
-**⚠️ IMPORTANT**: Before any significant changes, consult `AGENTS.md` for Telos
-validation requirements.
+**See `AGENTS.md` for complete Telos + SDD requirements.**

@@ -58,3 +58,61 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 2. Make focused changes to fix specific issues
 3. Run `npm test` to verify
 4. Ask user before version bumps or publishing
+
+## Telos-SDD (Spec-Driven Development)
+
+This project includes a Spec-Driven Development system with 4 hierarchical
+levels:
+
+| Level | Name       | Description                               |
+| ----- | ---------- | ----------------------------------------- |
+| L4    | Purpose    | Why the project exists + success metrics  |
+| L3    | Experience | User journeys, UX requirements, analytics |
+| L2    | Contract   | API contracts, component interfaces       |
+| L1    | Function   | Individual functions with TDD scenarios   |
+
+### Key Commands
+
+```bash
+telos spec init              # Initialize SDD structure
+telos discover               # Generate specs from existing code
+telos validate               # Validate specs, links, tests, orphans
+telos context <spec-id>      # Load recursive context for AI
+telos spec generate-tests    # Generate test skeletons from scenarios
+telos coverage               # Show spec/test coverage
+telos orphans                # Find unlinked code
+telos hooks install          # Install pre-commit validation
+```
+
+### Code Annotations
+
+Every function should have a @telos annotation:
+
+```typescript
+// @telos L1:function:src/auth/validation:validateToken
+export function validateToken(token: string): TokenValidation {
+  // implementation
+}
+```
+
+Tests should have @telos-test annotations:
+
+```typescript
+// @telos-test L1:function:src/auth/validation:validateToken
+describe("validateToken", () => {
+  // @telos-scenario L1:function:src/auth/validation:validateToken:valid-token
+  it("should validate properly signed tokens", () => {
+    // test
+  });
+});
+```
+
+### TDD Workflow
+
+1. Create/update spec with scenarios
+2. Generate tests: `telos spec generate-tests <spec-id>`
+3. Run tests → Fail (Red)
+4. Implement with @telos annotation
+5. Run tests → Pass (Green)
+6. Validate: `telos validate`
+7. Commit (hooks verify)

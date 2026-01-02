@@ -1,149 +1,175 @@
-# ⚠️ TELOS FRAMEWORK - REQUIRED READING ⚠️
+# TELOS FRAMEWORK - REQUIRED READING
 
-This project uses the **Telos Framework** - a 9-level purpose-driven
-architecture for AI-assisted software development.
+This project uses the **Telos Framework** with **Spec-Driven Development
+(SDD)**.
 
-**CRITICAL**: Before making ANY significant changes, you MUST validate against
-the Telos hierarchy defined in `.telos/TELOS.md`.
+**CRITICAL**: All code must trace back to specifications. Every function needs a
+`@telos` annotation linking it to a spec.
 
-## HARD REQUIREMENT: Validate Before Any Significant Change
+## Spec-Driven Development (SDD)
 
-**BEFORE** implementing ANY of the following, you MUST read `.telos/TELOS.md`
-and run bidirectional validation (L9→L1→L9):
+This project enforces a 4-level spec hierarchy:
 
-- ✋ **Framework upgrades** (Next.js, React, Vue, etc.)
-- ✋ **Dependency changes** (new packages or major version bumps)
-- ✋ **New features** or API changes
-- ✋ **Breaking changes** or refactoring
-- ✋ **Architecture changes** (new patterns, state management, etc.)
+| Level  | Name       | Description                               |
+| ------ | ---------- | ----------------------------------------- |
+| **L4** | Purpose    | Why the project exists + success metrics  |
+| **L3** | Experience | User journeys, UX requirements, analytics |
+| **L2** | Contract   | API contracts, component interfaces       |
+| **L1** | Function   | Individual functions with TDD scenarios   |
 
-**If you skip validation, STOP and ask the user.**
+### Spec Location
 
-## When to Reference Telos (REQUIRED)
+All specs live in `telos/specs/`:
 
-You MUST consult `.telos/TELOS.md` and validate through both flows for:
+```
+telos/specs/
+├── L4-purpose/      # Project purpose (one file)
+├── L3-experience/   # User journeys
+├── L2-contract/     # API/component contracts
+└── L1-function/     # Function-level specs with scenarios
+```
 
-- ✅ **Before implementing new features** (check L9-L5 strategic alignment)
-- ✅ **Before refactoring code** (ensure L1-L4 technical standards maintained)
-- ✅ **Before dependency upgrades** (especially major versions - validate L1-L4
-  compatibility)
-- ✅ **Before framework migrations** (validate entire stack L1-L9)
-- ✅ **Before API contract changes** (consult L4 Integration-Contractor)
-- ✅ **When resolving conflicts** between requirements (appeal to higher-level
-  purpose)
-- ✅ **During code review** (validate against appropriate agent level)
+### Code Annotation Requirements
 
-## Required Validation Process
+**EVERY function MUST have a `@telos` annotation** linking it to a spec:
 
-### BEFORE Starting Work
+```typescript
+// @telos L1:function:src/auth/validation:validateToken
+export function validateToken(token: string): TokenValidation {
+  // implementation
+}
+```
 
-For ANY significant change:
+**EVERY test MUST have `@telos-test` and `@telos-scenario` annotations**:
 
-1. **Create validation todo**: Add "Validate with Telos framework (L9→L1→L9)" as
-   HIGH priority
-2. **Read `.telos/TELOS.md`**: Understand the current purpose hierarchy
-3. **Identify affected layers**: Which levels (L1-L9) does this change impact?
-4. **Consult agent definitions**: Read the relevant agent files in
-   `.telos/agents/`
+```typescript
+// @telos-test L1:function:src/auth/validation:validateToken
+describe("validateToken", () => {
+  // @telos-scenario L1:function:src/auth/validation:validateToken:valid-token
+  it("should validate properly signed tokens", () => {
+    // test
+  });
+});
+```
 
-### DURING Work
+## BEFORE Writing Any Code
 
-1. **Run downward validation** (L9→L1): Does this serve our ultimate purpose?
-   - Start at L9 (Telos-Guardian): Does this align with our mission?
-   - Flow down through L8, L7, L6... to L1
-   - Each layer asks: "Does this decision support the layer above?"
+1. **Check if a spec exists** for the code you're about to write
+2. **If no spec exists**, create one first using the workflow below
+3. **If spec exists**, read it to understand requirements and scenarios
+4. **Generate tests** from the spec before implementing
+5. **Add @telos annotation** to your code linking to the spec
 
-2. **Run upward validation** (L1→L9): Is this technically feasible?
-   - Start at L1 (Syntax-Linter): Does this meet code quality standards?
-   - Flow up through L2, L3, L4... to L9
-   - Each layer asks: "Can I support what the layer below needs?"
+## Automatic Workflows
 
-3. **Check convergence**: Only proceed if both flows agree
-   - Top-down says "serves purpose" AND bottom-up says "is feasible" → ✅
-     Implement
-   - Top-down says "serves purpose" BUT bottom-up says "infeasible" → Revise
-     strategy
-   - Bottom-up says "feasible" BUT top-down says "doesn't serve purpose" →
-     Reject change
+### When Creating New Features
 
-**If flows don't converge, STOP and ask the user.**
+1. Run `npx telos context L4:purpose` to understand project purpose
+2. Create spec at appropriate level:
+   - User-facing feature → L3:experience spec
+   - API/component → L2:contract spec
+   - Function → L1:function spec
+3. Generate tests: `npx telos spec generate-tests <spec-id>`
+4. Implement with @telos annotations
+5. Validate: `npx telos validate`
+
+### When Modifying Existing Code
+
+1. Find the spec for the code: check for `@telos` annotation
+2. Load context: `npx telos context <spec-id>`
+3. Update spec if requirements change
+4. Update tests if scenarios change
+5. Modify code
+6. Validate: `npx telos validate`
+
+### When Reviewing Code
+
+Run validation to check:
+
+- All specs have valid structure: `npx telos validate --specs`
+- All annotations point to specs: `npx telos validate --links`
+- All L1 specs have tests: `npx telos validate --tests`
+- No orphaned code: `npx telos validate --orphans`
+
+## TDD Workflow (REQUIRED)
+
+1. **Spec First**: Create or update spec with scenarios
+2. **Generate Tests**: `npx telos spec generate-tests <spec-id>`
+3. **Red**: Run tests - they should fail
+4. **Implement**: Write code with @telos annotation
+5. **Green**: Run tests - they should pass
+6. **Validate**: `npx telos validate`
+
+## Key Commands
+
+| Command                                   | When to Use                       |
+| ----------------------------------------- | --------------------------------- |
+| `npx telos spec init`                     | First time setup of SDD           |
+| `npx telos discover`                      | Generate specs from existing code |
+| `npx telos context <spec-id>`             | Before modifying code             |
+| `npx telos spec create <level> <name>`    | Creating new feature              |
+| `npx telos spec generate-tests <spec-id>` | Before implementing               |
+| `npx telos validate`                      | Before committing                 |
+| `npx telos coverage`                      | Check spec/test coverage          |
+| `npx telos orphans`                       | Find code without specs           |
+
+## Hard Requirements
 
 ### BEFORE Committing
 
-Before ANY git commit that includes changes listed above, you MUST:
+You MUST ensure:
 
-1. Read `.telos/TELOS.md`
-2. Run downward validation (L9→L1)
-3. Run upward validation (L1→L9)
-4. Verify convergence
-5. Document validation in commit message or create validation summary
+1. All new code has `@telos` annotations
+2. All tests have `@telos-test` annotations
+3. `npx telos validate` passes
+4. No orphaned functions exist
 
-**If you cannot validate or flows don't converge, STOP and ask the user before
-committing.**
+### BEFORE Creating a PR
 
-## Todo System Integration
+Run full validation:
 
-For significant changes (new features, refactoring, upgrades, migrations):
-
-1. **ALWAYS** add a high-priority todo: "Validate with Telos framework
-   (L9→L1→L9)"
-2. Complete validation BEFORE starting implementation work
-3. Add specific layer validations as sub-tasks when needed
-
-Example:
-
-```
-☐ Validate Next.js upgrade with Telos (HIGH PRIORITY)
-  ☐ L4: Check API contract compatibility
-  ☐ L3: Verify component patterns still work
-  ☐ L2: Ensure functions remain testable
-  ☐ L1: Validate code quality standards
+```bash
+npx telos validate
 ```
 
-## Agent Responsibilities
+This checks:
 
-When working on different types of tasks, reference the corresponding agent:
+- Spec structure integrity
+- Code-spec link validity
+- Test coverage
+- Orphaned code detection
 
-| Task Type                   | Consult Agent               | File                                         |
-| --------------------------- | --------------------------- | -------------------------------------------- |
-| Project direction decisions | Telos-Guardian (L9)         | `.telos/agents/l9-telos-guardian.md`         |
-| Business value questions    | Market-Analyst (L8)         | `.telos/agents/l8-market-analyst.md`         |
-| Product strategy            | Insight-Synthesizer (L7)    | `.telos/agents/l7-insight-synthesizer.md`    |
-| UX/design decisions         | UX-Simulator (L6)           | `.telos/agents/l6-ux-simulator.md`           |
-| User workflow validation    | Journey-Validator (L5)      | `.telos/agents/l5-journey-validator.md`      |
-| API changes                 | Integration-Contractor (L4) | `.telos/agents/l4-integration-contractor.md` |
-| Component design            | Component-Architect (L3)    | `.telos/agents/l3-component-architect.md`    |
-| Function implementation     | Function-Author (L2)        | `.telos/agents/l2-function-author.md`        |
-| Code quality                | Syntax-Linter (L1)          | `.telos/agents/l1-syntax-linter.md`          |
+**If validation fails, fix issues before proceeding.**
 
-## The Nine Levels
+## Spec ID Format
 
-**Strategic Layers (L9-L5)** handle high-level purpose, strategy, and user
-experience:
+Full path format: `L{level}:{type}:{path}:{name}`
 
-- **L9: Telos-Guardian** - Ultimate purpose keeper
-- **L8: Market-Analyst** - Business value measurer
-- **L7: Insight-Synthesizer** - Product strategist
-- **L6: UX-Simulator** - Experience designer
-- **L5: Journey-Validator** - Workflow verifier
+Examples:
 
-**Technical Layers (L4-L1)** handle implementation details and code quality:
+- `L4:purpose` - Project purpose
+- `L3:experience:auth-journey` - Auth user journey
+- `L2:contract:src/api/auth` - Auth API contract
+- `L1:function:src/auth/validation:validateToken` - Specific function
 
-- **L4: Integration-Contractor** - API contract enforcer
-- **L3: Component-Architect** - Component designer
-- **L2: Function-Author** - Function implementer
-- **L1: Syntax-Linter** - Code quality enforcer
+## Context Loading
 
-## Telos-Logos System
+When you need to understand code, load its full context:
 
-**Telos** (τέλος, purpose) is defined in `.telos/TELOS.md` - the ultimate goal
-this project serves.
+```bash
+npx telos context L1:function:src/auth/validation:validateToken
+```
 
-**Logos** (λόγος, reasoning) is the bidirectional validation flow ensuring every
-implementation decision traces back to ultimate purpose while technical reality
-informs strategic decisions.
+This loads:
+
+- TELOS.md (project entry point)
+- Full lineage from L4 purpose down to target
+- Adjacent sibling specs
+- Implementation file paths
+
+Use this context to ensure changes align with purpose.
 
 ---
 
-**Remember**: Every change should serve the ultimate purpose defined in L9. When
-in doubt, consult the Telos hierarchy.
+**Remember**: Code without specs is orphaned code. Specs without tests are
+incomplete. Every line should trace back to purpose.

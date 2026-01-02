@@ -6,6 +6,85 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-01-01
+
+### Added
+
+- **Spec-Driven Development (SDD) System**: Complete implementation of
+  hierarchical specification management
+  - **4-Level Hierarchy**: Consolidated from 9 levels to 4 actionable levels:
+    - L4 (Purpose): Why the project exists + success metrics
+    - L3 (Experience): User journeys, UX requirements, analytics
+    - L2 (Contract): API contracts, component interfaces
+    - L1 (Function): Individual functions with TDD scenarios
+  - **Spec ID Format**: Full path identifiers (e.g.,
+    `L1:function:src/auth/validation:validateToken`)
+  - **Code Annotations**: `@telos` annotations link code to specs, `@telos-test`
+    and `@telos-scenario` for tests
+  - **Multi-language support**: JavaScript, TypeScript, Python, Go, Rust, Java,
+    C#, Ruby, PHP, Swift, Kotlin
+
+- **New SDD CLI Commands**:
+  - `telos spec init` - Initialize SDD structure with telos/ directory and
+    .telosrc.json
+  - `telos spec create <level> <name>` - Create new spec from templates
+  - `telos spec tree` - Display spec hierarchy as tree
+  - `telos spec generate-tests <spec-id>` - Generate test skeletons from
+    scenarios
+  - `telos validate` - Full validation (specs, links, tests, orphans)
+  - `telos context <spec-id>` - Load recursive context for AI (ancestors +
+    siblings)
+  - `telos coverage` - Show spec/test coverage report
+  - `telos orphans` - Find unlinked code (code without @telos annotations)
+  - `telos discover` - Brownfield discovery: scan existing code and propose
+    specs
+  - `telos hooks install/uninstall` - Git pre-commit hooks for validation
+  - `telos ci <platform>` - Generate CI configuration (github, gitlab, azure)
+
+- **New SDD Slash Commands**:
+  - `/telos:sdd-init` - Initialize SDD in project via AI
+  - `/telos:sdd-discover` - AI-assisted brownfield spec discovery
+  - `/telos:sdd-context` - Load spec context for AI work
+  - `/telos:sdd-validate` - Run validation with AI interpretation
+  - `/telos:sdd-generate-tests` - Generate tests from spec scenarios
+
+- **SDD Core Modules** (`lib/sdd/`):
+  - `spec-parser.js` - Parse spec metadata from markdown frontmatter
+  - `spec-index.js` - Build and manage spec registry (index.json)
+  - `annotation-scanner.js` - Scan code for @telos annotations (11 languages)
+  - `config.js` - Configuration management (.telosrc.json)
+  - `validator.js` - Validate specs, links, tests, orphans with detailed
+    reporting
+  - `context-loader.js` - Recursive context loading for AI assistants
+  - `test-generator.js` - Generate test skeletons from GIVEN/WHEN/THEN scenarios
+  - `spec-templates.js` - Templates for all 4 spec levels
+  - `discovery.js` - Brownfield code scanning and spec proposal generation
+  - `hooks.js` - Git hooks and CI configuration generation
+  - `index.js` - Module exports
+
+- **Automatic AI Behavior**: Updated templates so AI assistants automatically:
+  - Check specs before making changes
+  - Add @telos annotations to new code
+  - Validate spec alignment after changes
+  - Generate tests from scenarios
+
+### Changed
+
+- **README.md**: Completely rewritten to document SDD workflow and commands
+- **templates/TELOS_CORE.md**: Rewritten with 4-level hierarchy and SDD
+  instructions
+- **templates/AGENTS.md**: Updated with automatic AI SDD behavior guidelines
+- **templates/CLAUDE.md**: Updated to reference SDD workflow
+- **AGENTS.md**: Added SDD section with commands and TDD workflow
+
+### Technical
+
+- **15 new tests** for SDD modules (`test/sdd.test.js`)
+- **116 total tests**, all passing
+- Spec granularity: One spec per module/file (not per function)
+- Enforcement: Hard throughout via annotations and validation
+- TDD workflow: Every spec must have tests; tests generated from scenarios
+
 ## [0.8.3] - 2025-12-04
 
 ### Fixed
