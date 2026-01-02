@@ -43,8 +43,8 @@ describe('Template Injection', () => {
     
     // Should reference AGENTS.md for complete instructions
     expect(claudeContent).toContain('AGENTS.md');
-    expect(claudeContent).toContain('/telos-init');
-    expect(claudeContent).toContain('/telos-validate');
+    expect(claudeContent).toContain('/telos:init');
+    expect(claudeContent).toContain('/telos:validate');
     expect(claudeContent).toContain('@telos');
     
     // Should be much shorter than before (no duplication)

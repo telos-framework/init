@@ -3,7 +3,7 @@ import { buildHierarchy } from '../lib/discovery/hierarchy-builder.js';
 
 describe('Telos Discovery', () => {
   describe('buildHierarchy', () => {
-    it('should build quick hierarchy with all 9 levels', async () => {
+    it('should build quick hierarchy with all 4 levels', async () => {
       const telosData = {
         telos: 'Empower creators to share knowledge freely',
         beneficiaries: 'Content creators and learners worldwide',
@@ -14,11 +14,11 @@ describe('Telos Discovery', () => {
       const hierarchy = await buildHierarchy(telosData, { quick: true });
 
       expect(hierarchy).toBeDefined();
-      expect(Object.keys(hierarchy)).toHaveLength(9);
-      expect(hierarchy.L9.purpose).toBe(telosData.telos);
-      expect(hierarchy.L9.beneficiaries).toBe(telosData.beneficiaries);
+      expect(Object.keys(hierarchy)).toHaveLength(4);
+      expect(hierarchy.L4.purpose).toBe(telosData.telos);
+      expect(hierarchy.L4.beneficiaries).toBe(telosData.beneficiaries);
       expect(hierarchy.L1.level).toBe('L1');
-      expect(hierarchy.L5.name).toBe('Journey-Validator');
+      expect(hierarchy.L3.name).toBe('Experience');
     });
 
     it('should include all required fields for each level', async () => {
@@ -49,8 +49,9 @@ describe('Telos Discovery', () => {
 
       const hierarchy = await buildHierarchy(telosData, { quick: true });
 
-      expect(hierarchy.L9.level).toBe('L9');
-      expect(hierarchy.L8.level).toBe('L8');
+      expect(hierarchy.L4.level).toBe('L4');
+      expect(hierarchy.L3.level).toBe('L3');
+      expect(hierarchy.L2.level).toBe('L2');
       expect(hierarchy.L1.level).toBe('L1');
     });
   });

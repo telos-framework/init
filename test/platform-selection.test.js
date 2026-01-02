@@ -50,7 +50,7 @@ describe('Platform Selection', () => {
       expect(files).toContain('telos-validate.md');
       
       const initContent = await fs.readFile(path.join(opencodeDir, 'telos-init.md'), 'utf-8');
-      expect(initContent).toMatch(/^---\ndescription: Initialize Telos multi-agent system/);
+      expect(initContent).toMatch(/^---\ndescription: Initialize Telos spec-driven development/);
       expect(initContent).toContain('---');
     });
 
@@ -263,7 +263,8 @@ describe('Platform Selection', () => {
       const claudeDir = path.join(testDir, '.claude', 'commands', 'telos');
       const validateContent = await fs.readFile(path.join(claudeDir, 'validate.md'), 'utf-8');
       
-      expect(validateContent).toContain('Validate current code against Telos purpose hierarchy');
+      // Updated for 4-level SDD system
+      expect(validateContent).toContain('Validate specs');
     });
 
     it('should have correct frontmatter descriptions for Opencode', async () => {
@@ -275,10 +276,11 @@ describe('Platform Selection', () => {
       expect(quickContent).toMatch(/description: Quick Telos initialization with auto-accepted AI proposals/);
       
       const validateContent = await fs.readFile(path.join(opencodeDir, 'telos-validate.md'), 'utf-8');
-      expect(validateContent).toMatch(/description: Validate current code against Telos purpose hierarchy/);
+      // Updated for 4-level SDD system
+      expect(validateContent).toMatch(/description: Validate specs/);
       
       const statusContent = await fs.readFile(path.join(opencodeDir, 'telos-status.md'), 'utf-8');
-      expect(statusContent).toMatch(/description: Show current Telos configuration and hierarchy/);
+      expect(statusContent).toMatch(/description: Show current Telos configuration/);
       
       const resetContent = await fs.readFile(path.join(opencodeDir, 'telos-reset.md'), 'utf-8');
       expect(resetContent).toMatch(/description: Clear existing Telos installation and reinitialize/);

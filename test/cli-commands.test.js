@@ -37,11 +37,16 @@ describe('CLI Commands', () => {
       expect(output).toContain('not initialized');
     });
 
-    it('should report initialized status when telos exists', async () => {
-      await fs.mkdir(path.join(testDir, 'telos', 'content'), { recursive: true });
+    it('should report initialized status when telos specs exist', async () => {
+      // Create 4-level SDD structure
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L4-purpose'), { recursive: true });
       await fs.writeFile(
-        path.join(testDir, 'telos', 'content', 'TELOS.md'),
-        '# Project Telos\n## L9: Ultimate Purpose\nTest purpose'
+        path.join(testDir, 'telos', 'specs', 'L4-purpose', 'purpose.md'),
+        '# L4: Purpose\nTest purpose'
+      );
+      await fs.writeFile(
+        path.join(testDir, 'telos', '.telosrc.json'),
+        JSON.stringify({ enforcement: { specs: 'hard' } })
       );
 
       await statusCommand({});
@@ -52,28 +57,34 @@ describe('CLI Commands', () => {
       expect(output).toContain('initialized');
     });
 
-    it('should count agent files when present', async () => {
-      await fs.mkdir(path.join(testDir, 'telos', 'content'), { recursive: true });
-      await fs.mkdir(path.join(testDir, 'telos', 'agents'), { recursive: true });
+    it('should count spec files when present', async () => {
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L4-purpose'), { recursive: true });
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L1-function'), { recursive: true });
       
-      await fs.writeFile(path.join(testDir, 'telos', 'content', 'TELOS.md'), '# Telos');
-      await fs.writeFile(path.join(testDir, 'telos', 'agents', 'l1-syntax.md'), '# L1');
-      await fs.writeFile(path.join(testDir, 'telos', 'agents', 'l2-function.md'), '# L2');
+      await fs.writeFile(path.join(testDir, 'telos', 'specs', 'L4-purpose', 'purpose.md'), '# L4');
+      await fs.writeFile(path.join(testDir, 'telos', 'specs', 'L1-function', 'auth.md'), '# L1');
+      await fs.writeFile(
+        path.join(testDir, 'telos', '.telosrc.json'),
+        JSON.stringify({ enforcement: { specs: 'hard' } })
+      );
 
       await statusCommand({});
       
       const calls = consoleLogSpy.mock.calls.map(call => call.join(' '));
       const output = calls.join('\n');
       
-      expect(output).toContain('Agents');
-      expect(output).toContain('2');
+      expect(output).toContain('Specs');
     });
 
     it('should show config when available', async () => {
-      await fs.mkdir(path.join(testDir, 'telos', 'content'), { recursive: true });
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L4-purpose'), { recursive: true });
       await fs.mkdir(path.join(testDir, '.telos'), { recursive: true });
       
-      await fs.writeFile(path.join(testDir, 'telos', 'content', 'TELOS.md'), '# Telos');
+      await fs.writeFile(path.join(testDir, 'telos', 'specs', 'L4-purpose', 'purpose.md'), '# Telos');
+      await fs.writeFile(
+        path.join(testDir, 'telos', '.telosrc.json'),
+        JSON.stringify({ enforcement: { specs: 'hard' } })
+      );
       await fs.writeFile(
         path.join(testDir, '.telos', 'config.json'),
         JSON.stringify({
@@ -101,55 +112,55 @@ describe('CLI Commands', () => {
       expect(output).toContain('not initialized');
     });
 
-    it('should validate telos hierarchy', async () => {
-      await fs.mkdir(path.join(testDir, 'telos', 'content'), { recursive: true });
-      await fs.mkdir(path.join(testDir, 'telos', 'agents'), { recursive: true });
+    it('should validate telos SDD structure', async () => {
+      // Create 4-level SDD structure
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L4-purpose'), { recursive: true });
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L3-experience'), { recursive: true });
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L2-contract'), { recursive: true });
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L1-function'), { recursive: true });
       
       await fs.writeFile(
-        path.join(testDir, 'telos', 'content', 'TELOS.md'),
-        `# Project Telos
-## L9: Ultimate Purpose
-Strategic purpose
-## L8: Business Context
-Business goals
-## L1: Syntax
-Code standards`
+        path.join(testDir, 'telos', 'specs', 'L4-purpose', 'purpose.md'),
+        `<!-- telos-metadata
+id: L4:purpose
+level: 4
+title: Test Project
+-->
+# L4: Purpose
+Test purpose`
       );
 
-      await fs.writeFile(path.join(testDir, 'telos', 'content', 'TOOLS.md'), '## Tools by Agent Level\n');
-      await fs.writeFile(path.join(testDir, 'telos', 'content', 'AGENTS.md'), '# Agents\n');
+      await fs.writeFile(
+        path.join(testDir, 'telos', '.telosrc.json'),
+        JSON.stringify({ enforcement: { specs: 'hard', links: 'hard', tests: 'hard', orphans: 'soft' } })
+      );
 
-      for (let i = 1; i <= 9; i++) {
-        await fs.writeFile(
-          path.join(testDir, 'telos', 'agents', `l${i}-agent.md`),
-          `# L${i} Agent`
-        );
-      }
+      await fs.writeFile(path.join(testDir, 'AGENTS.md'), '# AI Agent Instructions\n');
 
       await validateCommand({});
       
       const calls = consoleLogSpy.mock.calls.map(call => call.join(' '));
       const output = calls.join('\n');
       
-      expect(output).toContain('Telos Hierarchy');
-      expect(output).toContain('Agent Definitions');
-      expect(output).toContain('Tool Configuration');
+      expect(output).toContain('Spec Structure');
+      expect(output).toContain('L4 Purpose');
+      expect(output).toContain('Configuration');
       expect(output).toContain('Platform Setup');
     });
 
-    it('should fail when agents are missing', async () => {
-      await fs.mkdir(path.join(testDir, 'telos', 'content'), { recursive: true });
-      await fs.mkdir(path.join(testDir, 'telos', 'agents'), { recursive: true });
-      
-      await fs.writeFile(path.join(testDir, 'telos', 'content', 'TELOS.md'), '## L9:\n## L1:');
-      await fs.writeFile(path.join(testDir, 'telos', 'agents', 'l1-agent.md'), '# L1');
+    it('should fail when L4 purpose is missing', async () => {
+      await fs.mkdir(path.join(testDir, 'telos', 'specs', 'L4-purpose'), { recursive: true });
+      await fs.writeFile(
+        path.join(testDir, 'telos', '.telosrc.json'),
+        JSON.stringify({ enforcement: { specs: 'hard' } })
+      );
 
       await validateCommand({});
       
       const calls = consoleLogSpy.mock.calls.map(call => call.join(' '));
       const output = calls.join('\n');
       
-      expect(output).toMatch(/failed|✗/);
+      expect(output).toMatch(/failed|✗|not found/i);
     });
   });
 });

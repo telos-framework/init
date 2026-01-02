@@ -5,26 +5,14 @@
 
 {{TELOS_CORE}}
 
-## Slash Commands
-
-If your AI assistant supports slash commands, use these to interact with Telos:
-
-| Command           | Purpose                                          |
-| ----------------- | ------------------------------------------------ |
-| `/telos-init`     | Initialize or reconfigure Telos + SDD            |
-| `/telos-quick`    | Fast initialization with auto-accepted proposals |
-| `/telos-validate` | Check code alignment with specs                  |
-| `/telos-status`   | Show current Telos configuration                 |
-| `/telos-reset`    | Clear and reinitialize                           |
-
 ## Automatic Behavior
 
 As an AI assistant, you should **automatically**:
 
 1. **Check for specs** before modifying any code
-2. **Load context** with `npx telos context` when unsure of purpose
+2. **Read spec context** when unsure of purpose
 3. **Create specs first** when implementing new features
-4. **Generate tests** before implementation
+4. **Generate tests** before implementation (TDD)
 5. **Add @telos annotations** to all new functions
 6. **Validate** before suggesting commits
 
@@ -34,25 +22,25 @@ As an AI assistant, you should **automatically**:
 2. If yes, create L3 (experience) or L2 (contract) spec
 3. Generate tests from scenarios
 4. Implement with annotations
-5. Validate
+5. Run `/telos:validate`
 
 ### When User Asks to Fix a Bug
 
 1. Find the spec: look for `@telos` annotation in affected code
-2. Load context: `npx telos context <spec-id>`
+2. Read the spec to understand requirements
 3. Check if spec scenarios cover this case
 4. Add scenario if missing
 5. Update test
 6. Fix code
-7. Validate
+7. Run `/telos:validate`
 
 ### When User Asks to Refactor
 
-1. Find all affected specs
-2. Load context for each
+1. Find all affected specs via `@telos` annotations
+2. Read each spec to understand contracts
 3. Ensure refactor doesn't break spec contracts
 4. Update annotations if paths change
-5. Validate
+5. Run `/telos:validate`
 
 ## Philosophy
 

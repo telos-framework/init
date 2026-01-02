@@ -4,132 +4,132 @@ description: Quick Telos initialization with auto-accepted AI proposals
 
 # Telos Quick Initialization
 
-This is the fast-track initialization mode that accepts all AI-proposed
-hierarchy levels without user review. Use this when you trust the AI analysis
-and want to get started immediately.
+This is the fast-track initialization mode that accepts all AI-proposed specs
+without user review. Use this when you trust the AI analysis and want to get
+started immediately.
+
+## The 4-Level Hierarchy
+
+| Level | Name       | Description                                     |
+| ----- | ---------- | ----------------------------------------------- |
+| L4    | Purpose    | Why the project exists + success metrics        |
+| L3    | Experience | User journeys, UX requirements, analytics needs |
+| L2    | Contract   | API contracts, component interfaces, boundaries |
+| L1    | Function   | Individual functions with TDD scenarios         |
 
 ## Process
 
-1. **Analyze codebase** (same as `/telos-init`)
-2. **Propose hierarchy** (auto-accept without showing to user)
-3. **Generate all files** immediately
-4. **Show summary** of what was created
+1. **Analyze codebase** silently
+2. **Generate L4 purpose spec** from README/docs
+3. **Show summary** of what was created
 
 ## Step 1: Silent Analysis
 
-Perform the same analysis as `/telos-init`:
+Analyze without user interaction:
 
 - Read README.md
 - Check package.json / pyproject.toml / Cargo.toml
 - Scan src/ or lib/ directory
 - Detect testing and linting tools
-- Check git status
 
-## Step 2: Auto-Generate Hierarchy
+## Step 2: Auto-Generate L4 Purpose
 
-Generate the 9-level hierarchy without user interaction:
+Generate `telos/specs/L4-purpose/purpose.md` based on analysis:
 
-**L9-L5 (Strategic)**: Infer from README and project description **L4-L1
-(Technical)**: Auto-generate from detected tools
+```markdown
+<!-- telos-metadata
+id: L4:purpose
+level: 4
+title: [Project Name]
+-->
 
-Do NOT ask for user review - proceed directly to generation.
+# L4: Purpose
 
-## Step 3: Generate Files
+## Why This Project Exists
 
-Create all files exactly as specified in `/telos-init` Step 4:
+[Inferred from README]
 
-- `.telos/TELOS.md`
-- `.telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md`
-- `.telos/agents/sub-agents/` (15 specialized sub-agent files)
-- `.telos/agents/SUB_AGENT_MAPPING.md` (sub-agent mapping guide)
-- `AGENTS.md` - AI assistant configuration with complete TELOS_CORE content
-- `CLAUDE.md` - Claude Code integration (if applicable)
-- `logos/orchestrator.js` (if Node.js project)
+## Beneficiaries
 
-### Step 3.1: Copy Sub-Agent Specialists
+[Inferred from README or package description]
 
-**EXECUTE these bash commands** to copy the specialized sub-agents:
+## Success Metrics
 
-```bash
-# Find telos-framework package location using Node module resolution
-TELOS_PATH=$(node -p "require.resolve('telos-framework/package.json').replace('/package.json', '')")
+- [Inferred metric 1]
+- [Inferred metric 2]
+- [Inferred metric 3]
 
-# Create sub-agents directory
-mkdir -p .telos/agents/sub-agents
+## Constraints
 
-# Copy all sub-agent files (15 specialized agents)
-cp "$TELOS_PATH/templates/agents/sub-agents/"*.md .telos/agents/sub-agents/
+- [Any detected constraints]
 
-# Copy sub-agent mapping guide
-cp "$TELOS_PATH/templates/agents/SUB_AGENT_MAPPING.md" .telos/agents/
+## Technology Stack
+
+- **Languages**: [Detected]
+- **Frameworks**: [Detected]
+- **Testing**: [Detected]
+- **Linting**: [Detected]
+
+## Initialization
+
+- **Date**: [Current date]
+- **Method**: /telos:quick
 ```
 
-**Verification:** Confirm that `.telos/agents/sub-agents/` contains 15 markdown files.
-
-### Step 3.2: Integrate with AI Assistant Configuration
-
-**IMPORTANT**: Use the actual template files from the telos-framework package.
-
-**Execute these steps:**
-
-1. **Locate templates:**
-   ```bash
-   TELOS_PATH=$(node -p "require.resolve('telos-framework/package.json').replace('/package.json', '')")
-   ```
-
-2. **Read template files:**
-   - Read `$TELOS_PATH/templates/TELOS_CORE.md`
-   - Read `$TELOS_PATH/templates/AGENTS.md`
-   - Read `$TELOS_PATH/templates/CLAUDE.md`
-
-3. **Process AGENTS.md template:**
-   - Replace `{{TELOS_CORE}}` in AGENTS.md template with full TELOS_CORE.md content
-   - Create or append to `AGENTS.md` in project root
-
-4. **Create CLAUDE.md** (if running from Claude Code):
-   - If `.claude/` directory exists and `CLAUDE.md` doesn't exist, create it
-   - Use the CLAUDE.md template content
-
-**Do NOT use simplified inline templates - use the actual template files to ensure complete validation instructions are included.**
-
-## Step 4: Display Summary
+## Step 3: Display Summary
 
 Once complete, show:
 
 ---
+
 ⚡ **Telos quick initialization complete!**
 
-**Generated hierarchy:**
+**Your project now has:**
 
-| Level | Agent | Purpose |
-|-------|-------|---------|
-| L9 | Telos-Guardian | [Purpose] |
-| L8 | Market-Analyst | [Purpose] |
-| L7 | Insight-Synthesizer | [Purpose] |
-| L6 | UX-Simulator | [Purpose] |
-| L5 | Journey-Validator | [Purpose] |
-| L4 | Integration-Contractor | [Purpose] |
-| L3 | Component-Architect | [Purpose] |
-| L2 | Function-Author | [Purpose] |
-| L1 | Syntax-Linter | [Purpose] |
+```
+telos/
+├── TELOS.md                 # Entry point
+├── .telosrc.json            # Configuration
+├── index.json               # Spec registry
+└── specs/
+    ├── L4-purpose/
+    │   └── purpose.md       # [Generated purpose]
+    ├── L3-experience/       # Ready for user journey specs
+    ├── L2-contract/         # Ready for API/component specs
+    └── L1-function/         # Ready for function specs
+```
 
-**Files created:**
-- `.telos/TELOS.md` - Ultimate purpose and hierarchy
-- `.telos/agents/l9-telos-guardian.md` through `l1-syntax-linter.md` - Nine level agent definitions
-- `.telos/agents/sub-agents/` - 15 specialized sub-agents
-- `.telos/agents/SUB_AGENT_MAPPING.md` - Sub-agent delegation guide
+**Generated L4 Purpose:**
 
-**AI assistant configuration updated:**
-- `AGENTS.md` - Comprehensive Telos validation requirements (TELOS_CORE content)
-- `CLAUDE.md` - Claude Code integration (if applicable)
+| Field         | Value               |
+| ------------- | ------------------- |
+| Purpose       | [Purpose statement] |
+| Beneficiaries | [Who benefits]      |
+| Stack         | [Detected tech]     |
 
-**Platform commands** (already installed by CLI):
-- Claude Code: `.claude/commands/telos/*.md` (5 commands)
-- Opencode: `.opencode/command/telos-*.md` (5 commands)
+**How Spec-Driven Development works:**
 
-**Your AI assistant now has the full Telos framework!** The `AGENTS.md` file contains complete validation requirements, agent responsibilities, and the bidirectional validation process.
+1. **Before coding**: Create a spec at the appropriate level
+2. **Write tests**: Generate tests from spec scenarios
+3. **Implement**: Write code with `@telos` annotation
+4. **Validate**: Run `/telos:validate` before commits
 
-**Not satisfied?** Run `/telos:reset` then `/telos:init` for interactive mode with full customization.
+**Available commands:**
+
+- `/telos:validate` - Validate specs, links, tests
+- `/telos:status` - Show current configuration
+- `/telos:sdd-discover` - Generate specs from existing code
+- `/telos:sdd-context` - Load spec context before changes
+
+**Next steps:**
+
+1. Review `telos/specs/L4-purpose/purpose.md` and refine if needed
+2. For existing code: Run `/telos:sdd-discover` to generate specs
+3. For new features: Create specs before coding
+
+**Not satisfied?** Run `/telos:init` for interactive mode with full
+customization.
+
 ---
 
 ## When to Use Quick Mode
@@ -138,12 +138,10 @@ Once complete, show:
 
 - Starting a new project with clear conventions
 - The codebase already has comprehensive README
-- You trust AI inference for strategic purpose
 - You want to iterate quickly and refine later
 
-❌ **Use full `/telos-init` when:**
+❌ **Use full `/telos:init` when:**
 
 - Project has unique or nuanced purpose
 - Strategic direction needs human input
-- Multiple stakeholders need alignment
-- Initial setup must be perfect
+- Initial setup must be carefully reviewed

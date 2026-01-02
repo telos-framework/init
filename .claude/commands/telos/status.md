@@ -1,61 +1,69 @@
 ---
-description: Show current Telos configuration and hierarchy
+description: Show current Telos configuration and spec status
 ---
 
 # Telos Status
 
-Display the current Telos configuration for this project.
+Display the current Telos spec-driven development status for this project.
 
 ## Check Installation
 
 First, check if Telos is initialized:
 
-- Look for `.telos/TELOS.md`
-- Look for `.telos/agents/` directory
+- Look for `telos/specs/` directory
+- Look for `telos/.telosrc.json`
 
 If not found, display:
 
 ```
 ❌ Telos not initialized
 
-Run `/telos-init` to set up the multi-agent system.
+Run `/telos:init` to set up spec-driven development.
 ```
 
 ## Display Configuration
 
 If Telos is initialized, read and display:
 
-### 1. Ultimate Purpose
+### 1. Project Purpose (L4)
 
-From `.telos/TELOS.md`, extract and display:
+From `telos/specs/L4-purpose/purpose.md`, extract and display:
 
 ```
-🎯 **Ultimate Purpose (L9)**
-[L9 purpose statement from TELOS.md]
+🎯 **Project Purpose (L4)**
+[Purpose statement from spec]
 
 **Beneficiaries**: [Who benefits]
-**Measurable Impact**: [Success metrics]
+**Success Metrics**: [Metrics listed]
 ```
 
-### 2. Purpose Hierarchy
+### 2. Spec Hierarchy Status
 
-Display all 9 levels:
+Count specs at each level:
 
-| Level | Agent                  | Purpose   | Status                                      |
-| ----- | ---------------------- | --------- | ------------------------------------------- |
-| L9    | Telos-Guardian         | [Purpose] | [✅ if l9-telos-guardian.md exists]         |
-| L8    | Market-Analyst         | [Purpose] | [✅ if l8-market-analyst.md exists]         |
-| L7    | Insight-Synthesizer    | [Purpose] | [✅ if l7-insight-synthesizer.md exists]    |
-| L6    | UX-Simulator           | [Purpose] | [✅ if l6-ux-simulator.md exists]           |
-| L5    | Journey-Validator      | [Purpose] | [✅ if l5-journey-validator.md exists]      |
-| L4    | Integration-Contractor | [Purpose] | [✅ if l4-integration-contractor.md exists] |
-| L3    | Component-Architect    | [Purpose] | [✅ if l3-component-architect.md exists]    |
-| L2    | Function-Author        | [Purpose] | [✅ if l2-function-author.md exists]        |
-| L1    | Syntax-Linter          | [Purpose] | [✅ if l1-syntax-linter.md exists]          |
+| Level | Name       | Count | Description                       |
+| ----- | ---------- | ----- | --------------------------------- |
+| L4    | Purpose    | 1     | Why the project exists            |
+| L3    | Experience | [N]   | User journeys and UX requirements |
+| L2    | Contract   | [N]   | API and component contracts       |
+| L1    | Function   | [N]   | Function specs with TDD scenarios |
 
-### 3. Technology Stack
+**Total Specs**: [Total count]
 
-From `.telos/TELOS.md`, show detected stack:
+### 3. Code Coverage
+
+Scan for @telos annotations:
+
+```
+**Code-to-Spec Links**
+- Functions with @telos: [N]
+- Tests with @telos-test: [N]
+- Orphaned functions: [N]
+```
+
+### 4. Technology Stack
+
+From `telos/specs/L4-purpose/purpose.md`:
 
 ```
 **Technology Stack**
@@ -63,47 +71,48 @@ From `.telos/TELOS.md`, show detected stack:
 - **Frameworks**: [Frameworks]
 - **Testing**: [Test frameworks]
 - **Linting**: [Linters]
-- **Build Tools**: [Build systems]
 ```
 
-### 4. Installation Details
+### 5. Configuration
 
-Show metadata:
+From `telos/.telosrc.json`:
 
 ```
-**Installation**
-- **Initialized**: [Date from TELOS.md]
-- **Method**: [AI Assistant / CLI]
-- **Agent Files**: [N]/9 present
-- **Orchestrator**: [✅ Present / ❌ Not found] (logos/orchestrator.js)
+**Enforcement Settings**
+- Specs: [hard/soft]
+- Links: [hard/soft]
+- Tests: [hard/soft]
+- Orphans: [hard/soft]
 ```
 
-### 5. Platform Integration
+### 6. Platform Integration
 
 Check for platform-specific files:
 
 ```
 **Platform Integration**
-- **Claude Code**: [✅ AGENTS.md exists / ❌ Not configured]
-- **OpenCode**: [✅ .opencode/ setup / ❌ Not configured]
+- AGENTS.md: [✅ exists / ❌ missing]
+- CLAUDE.md: [✅ exists / ❌ missing]
+- Slash commands: [✅ installed / ❌ missing]
 ```
 
 ## Health Check
 
 Perform a quick health check:
 
-**✅ Healthy**: All 9 agent files present, TELOS.md valid **⚠️ Incomplete**:
-Some agent files missing **❌ Corrupted**: TELOS.md missing or invalid
+- **✅ Healthy**: All required files present, L4 purpose defined
+- **⚠️ Incomplete**: Missing specs or configuration
+- **❌ Not Initialized**: Core files missing
 
-If incomplete or corrupted:
+If incomplete:
 
 ```
-⚠️  **Warning**: Telos installation is incomplete.
+⚠️ **Warning**: Telos setup is incomplete.
 
-**Missing files**:
-- [List missing agent files]
+**Issues**:
+- [List issues]
 
-**Suggestion**: Run `/telos-reset` then `/telos-init` to reinstall.
+**Suggestion**: Run `/telos:init` to complete setup.
 ```
 
 ## Quick Actions
@@ -112,59 +121,65 @@ Display available commands:
 
 ```
 **Available Commands**
-- `/telos-validate` - Check code alignment with purpose
-- `/telos-reset` - Clear and reinitialize
-- `/telos-init` - Reconfigure interactively
-- `/telos-quick` - Fast reconfiguration
+- `/telos:validate`           - Validate specs, links, tests
+- `/telos:init`               - Reconfigure interactively
+- `/telos:sdd-discover`       - Generate specs from existing code
+- `/telos:sdd-context`        - Load spec context
+- `/telos:sdd-generate-tests` - Generate tests from scenarios
 ```
 
 ## Example Output
 
-Full example when healthy:
-
 ```
-🎯 **Ultimate Purpose (L9)**
-Enable developers to build software with clear hierarchical purpose
+═══════════════════════════════════════════════════════════════════════════
+                           TELOS STATUS
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 **Project Purpose (L4)**
+Enable developers to build software with clear spec-driven development
 
 **Beneficiaries**: Software development teams using AI assistants
-**Measurable Impact**: Reduced technical debt, faster onboarding, purpose-aligned decisions
+**Success Metrics**: Reduced bugs, faster onboarding, traceable requirements
 
-**Purpose Hierarchy**
+**Spec Hierarchy**
 
-| Level | Agent | Purpose | Status |
-|-------|-------|---------|--------|
-| L9 | Telos-Guardian | Enable purposeful software development | ✅ |
-| L8 | Market-Analyst | Maximize developer productivity and code quality | ✅ |
-| L7 | Insight-Synthesizer | Synthesize best practices into actionable guidance | ✅ |
-| L6 | UX-Simulator | Ensure intuitive developer experience | ✅ |
-| L5 | Journey-Validator | Validate developer workflows end-to-end | ✅ |
-| L4 | Integration-Contractor | Maintain clean API contracts | ✅ |
-| L3 | Component-Architect | Design modular component architecture | ✅ |
-| L2 | Function-Author | Write testable, maintainable functions | ✅ |
-| L1 | Syntax-Linter | Enforce code quality standards | ✅ |
+| Level | Name       | Count | Status |
+| ----- | ---------- | ----- | ------ |
+| L4    | Purpose    | 1     | ✅     |
+| L3    | Experience | 3     | ✅     |
+| L2    | Contract   | 5     | ✅     |
+| L1    | Function   | 12    | ✅     |
+
+**Total Specs**: 21
+
+**Code-to-Spec Links**
+- Functions with @telos: 45
+- Tests with @telos-test: 38
+- Orphaned functions: 3
 
 **Technology Stack**
-- **Languages**: JavaScript, Node.js
-- **Frameworks**: None (CLI tool)
-- **Testing**: Vitest
+- **Languages**: TypeScript, JavaScript
+- **Frameworks**: React, Express
+- **Testing**: Vitest, Playwright
 - **Linting**: ESLint, Prettier
-- **Build Tools**: npm
 
-**Installation**
-- **Initialized**: 2025-01-15
-- **Method**: AI Assistant (/telos-init)
-- **Agent Files**: 9/9 present ✅
-- **Orchestrator**: ✅ Present
+**Enforcement Settings**
+- Specs: hard
+- Links: hard
+- Tests: hard
+- Orphans: soft
 
 **Platform Integration**
-- **Claude Code**: ✅ AGENTS.md configured
-- **OpenCode**: ✅ .opencode/ configured
+- AGENTS.md: ✅
+- CLAUDE.md: ✅
+- Slash commands: ✅ (7 commands)
 
 **Health**: ✅ Fully operational
 
 **Available Commands**
-- `/telos-validate` - Check code alignment with purpose
-- `/telos-reset` - Clear and reinitialize
-- `/telos-init` - Reconfigure interactively
-- `/telos-quick` - Fast reconfiguration
+- `/telos:validate`           - Validate specs, links, tests
+- `/telos:init`               - Reconfigure interactively
+- `/telos:sdd-discover`       - Generate specs from existing code
+- `/telos:sdd-context`        - Load spec context
+- `/telos:sdd-generate-tests` - Generate tests from scenarios
 ```

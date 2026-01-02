@@ -3,7 +3,6 @@
 [![npm version](https://badge.fury.io/js/telos-framework.svg)](https://www.npmjs.com/package/telos-framework)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/telos-framework)](https://nodejs.org)
-[![Tests](https://img.shields.io/badge/tests-116%20passing-brightgreen)]()
 
 A philosophically-grounded AI framework that embeds purpose hierarchy and
 spec-driven development into AI-assisted coding. Every line of code traces back
@@ -31,40 +30,30 @@ orchestrator itself. It ensures that:
 npx telos-framework init
 ```
 
-This command:
+This one command:
 
 - Detects your AI coding platform (Claude Code, OpenCode, Cursor, etc.)
-- Installs platform-specific configuration (CLAUDE.md, AGENTS.md, etc.)
-- Sets up Telos + SDD instructions for your AI assistant
+- Installs slash commands and platform-specific configuration
+- Sets up the spec-driven development structure
 
-After installation, your AI assistant automatically:
+After installation, open your project in your AI coding assistant and run:
 
-- Creates specs before implementing features
-- Adds `@telos` annotations to code
-- Generates tests from spec scenarios
-- Validates changes before commits
+```
+/telos:init
+```
 
-> **That's it!** No explicit commands needed for normal development. Your AI
-> reads the installed instructions and follows the Telos workflow automatically.
+> **That's it!** Your AI assistant now follows the Telos workflow automatically.
 
 ## How It Works
 
 ### The Spec Hierarchy (4 Levels)
 
-```
-L4: Purpose ─────────────────────────────────────────────────────┐
-│   Why does this project exist? Success metrics?               │
-│                                                                │
-├── L3: Experience ─────────────────────────────────────────────┤
-│   User journeys, UX requirements, analytics needs             │
-│                                                                │
-├── L2: Contract ───────────────────────────────────────────────┤
-│   API contracts, component interfaces, service boundaries     │
-│                                                                │
-└── L1: Function ───────────────────────────────────────────────┤
-    Individual functions with TDD scenarios                      │
-└────────────────────────────────────────────────────────────────┘
-```
+| Level | Name       | Description                                     |
+| ----- | ---------- | ----------------------------------------------- |
+| L4    | Purpose    | Why does this project exist? Success metrics?   |
+| L3    | Experience | User journeys, UX requirements, analytics needs |
+| L2    | Contract   | API contracts, component interfaces, boundaries |
+| L1    | Function   | Individual functions with TDD scenarios         |
 
 ### Code-to-Spec Linking
 
@@ -92,77 +81,77 @@ describe("validateToken", () => {
 ### TDD Workflow
 
 1. **Spec First**: Create spec with requirements and scenarios
-2. **Generate Tests**: Tests are generated from spec scenarios
+2. **Generate Tests**: AI generates tests from spec scenarios
 3. **Red**: Tests fail (no implementation yet)
-4. **Implement**: Write code with `@telos` annotation
+4. **Implement**: AI writes code with `@telos` annotation
 5. **Green**: Tests pass
-6. **Validate**: Run `npx telos validate` before commit
+6. **Validate**: AI validates before commit
 
 ## Installation
 
 ### New Projects
 
 ```bash
-# Initialize Telos in your project
 npx telos-framework init
+```
 
-# Initialize the spec structure
-npx telos spec init
+Then in your AI coding assistant:
+
+```
+/telos:init
 ```
 
 ### Existing Projects (Brownfield)
 
 ```bash
-# Initialize Telos
 npx telos-framework init
-
-# Discover and generate specs from existing code
-npx telos discover
 ```
 
-This scans your codebase and proposes a spec structure based on:
+Then in your AI coding assistant:
 
-- README and documentation
-- API routes and endpoints
-- Components and modules
-- Function signatures
-
-## CLI Commands
-
-### Core Commands
-
-```bash
-telos init              # Install Telos to your project
-telos spec init         # Initialize SDD spec structure
-telos discover          # Generate specs from existing code
-telos validate          # Validate specs, links, tests, orphans
+```
+/telos:sdd-discover
 ```
 
-### Spec Management
+This scans your codebase and proposes a spec structure based on existing code.
 
-```bash
-telos spec create <level> <name>    # Create a new spec (level 1-4)
-telos spec tree                     # Show spec hierarchy
-telos spec generate-tests <spec-id> # Generate test skeletons
-```
+## Slash Commands
 
-### Context & Coverage
+All interaction happens through slash commands in your AI coding assistant.
 
-```bash
-telos context <spec-id>   # Load recursive context for AI
-telos coverage            # Show spec and test coverage
-telos orphans             # Find code without @telos annotations
-telos lineage <spec-id>   # Show full lineage from L4 to spec
-```
+### Claude Code
 
-### Enforcement
+| Command                     | Description                        |
+| --------------------------- | ---------------------------------- |
+| `/telos:init`               | Initialize Telos with AI guidance  |
+| `/telos:quick`              | Quick init (auto-accept proposals) |
+| `/telos:validate`           | Validate specs, links, tests       |
+| `/telos:status`             | Show current configuration         |
+| `/telos:sdd-discover`       | Generate specs from existing code  |
+| `/telos:sdd-context`        | Load spec context before changes   |
+| `/telos:sdd-generate-tests` | Generate tests from spec scenarios |
 
-```bash
-telos hooks install       # Install pre-commit validation hooks
-telos hooks uninstall     # Remove hooks
-telos ci github           # Generate GitHub Actions workflow
-telos ci gitlab           # Generate GitLab CI config
-```
+### OpenCode
+
+| Command                     | Description                        |
+| --------------------------- | ---------------------------------- |
+| `/telos-init`               | Initialize Telos with AI guidance  |
+| `/telos-quick`              | Quick init (auto-accept proposals) |
+| `/telos-validate`           | Validate specs, links, tests       |
+| `/telos-status`             | Show current configuration         |
+| `/telos-sdd-discover`       | Generate specs from existing code  |
+| `/telos-sdd-context`        | Load spec context before changes   |
+| `/telos-sdd-generate-tests` | Generate tests from spec scenarios |
+
+### Other Platforms
+
+For Cursor, Cline, Windsurf, and other platforms, ask your AI assistant:
+
+- "Initialize Telos" or "Run Telos init"
+- "Validate my specs"
+- "Generate specs from my code"
+
+The AI reads the installed configuration and knows what to do.
 
 ## Project Structure
 
@@ -183,6 +172,7 @@ your-project/
 │       │   └── *.md             # API/component contracts
 │       └── L1-function/
 │           └── *.md             # Function specs with TDD scenarios
+├── .claude/commands/telos/      # Slash commands (Claude Code)
 ├── AGENTS.md                    # AI assistant instructions
 ├── CLAUDE.md                    # Claude-specific instructions
 └── src/
@@ -193,7 +183,7 @@ your-project/
 
 Works with any AI coding assistant:
 
-- Claude (Code, Projects)
+- Claude Code
 - OpenCode
 - Cursor
 - Cline
@@ -205,13 +195,7 @@ Single source of truth with platform-specific configuration files.
 
 ## Validation
 
-Run validation before commits:
-
-```bash
-npx telos validate
-```
-
-This checks:
+Your AI assistant validates before commits:
 
 | Check       | Description                                   |
 | ----------- | --------------------------------------------- |
@@ -220,27 +204,7 @@ This checks:
 | **Tests**   | All L1 specs have `@telos-test` annotations   |
 | **Orphans** | All functions have `@telos` annotations       |
 
-### Exit Codes
-
-- `0` - All validations passed
-- `1` - One or more validations failed (blocks commit/CI)
-
-### Pre-commit Hooks
-
-```bash
-# Install automatic validation
-npx telos hooks install
-```
-
-### CI Integration
-
-```bash
-# Generate GitHub Actions workflow
-npx telos ci github
-
-# Generate GitLab CI config
-npx telos ci gitlab
-```
+Run `/telos:validate` (Claude) or `/telos-validate` (OpenCode) to check.
 
 ## Configuration
 
@@ -296,5 +260,4 @@ MIT License - see [LICENSE](LICENSE)
 spec-traced creation.**
 
 [GitHub Repository](https://github.com/telos-framework/init) |
-[Documentation](https://telos-framework.dev) |
 [Report Issues](https://github.com/telos-framework/init/issues)

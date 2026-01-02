@@ -14,18 +14,9 @@ link to a spec via `@telos` annotation.
 
 1. Check if spec exists for your changes
 2. If not, create spec first
-3. Generate tests from spec
+3. Generate tests from spec scenarios
 4. Implement with `@telos` annotation
-5. Validate before commit
-
-### Key Commands
-
-```bash
-npx telos context <spec-id>           # Load context before changes
-npx telos spec generate-tests <id>    # Generate test skeletons
-npx telos validate                    # Validate before commit
-npx telos discover                    # Generate specs from existing code
-```
+5. Run `/telos:validate` before commit
 
 ### Annotation Format
 
@@ -42,23 +33,24 @@ describe("functionName", () => {
 
 ## Slash Commands
 
-Use these in Claude Code:
-
-| Command           | Purpose                                 |
-| ----------------- | --------------------------------------- |
-| `/telos-init`     | Initialize Telos + SDD with AI analysis |
-| `/telos-quick`    | Fast initialization (auto-accept)       |
-| `/telos-validate` | Check alignment with purpose hierarchy  |
-| `/telos-status`   | Show current configuration              |
+| Command                     | Purpose                           |
+| --------------------------- | --------------------------------- |
+| `/telos:init`               | Initialize Telos with AI guidance |
+| `/telos:quick`              | Fast init (auto-accept proposals) |
+| `/telos:validate`           | Validate specs, links, tests      |
+| `/telos:status`             | Show current configuration        |
+| `/telos:sdd-discover`       | Generate specs from existing code |
+| `/telos:sdd-context`        | Load spec context before changes  |
+| `/telos:sdd-generate-tests` | Generate tests from scenarios     |
 
 ## Spec Hierarchy
 
-```
-L4:purpose      → Why we exist + success metrics
-L3:experience   → User journeys + UX
-L2:contract     → APIs + components
-L1:function     → Functions + TDD
-```
+| Level | Name       | Purpose                    |
+| ----- | ---------- | -------------------------- |
+| L4    | Purpose    | Why we exist + metrics     |
+| L3    | Experience | User journeys + UX         |
+| L2    | Contract   | APIs + component contracts |
+| L1    | Function   | Functions + TDD scenarios  |
 
 ---
 
